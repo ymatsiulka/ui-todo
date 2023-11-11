@@ -1,0 +1,76 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+input:focus,
+input:active,
+input:focus-visible {
+  border: 0;
+  outline: none !important;
+}
+
+.bottom-layout {
+  height: 65%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.todo-list-container {
+  width: 400px;
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+  padding: 8px;
+  background-color: $white;
+}
+
+.input-wrapper {
+  border: 1px solid lightgrey;
+  background-color: $white;
+  padding: 8px;
+  display: flex;
+  gap: 10px;
+}
+
+.input-wrapper>input[type=text] {
+  width: 100%;
+  height: 25px;
+  background-repeat: no-repeat;
+  background-size: 20px 100%;
+  /* equal to the height */
+  height: 20px;
+  padding-left: 20px;
+  border: 0;
+  /* equal to background-size in X-axis */
+}
+
+.todo-actions {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+}
+
+.todo-actions>.middle {
+  display: flex;
+  gap: 5px;
+}

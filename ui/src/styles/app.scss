@@ -1,0 +1,43 @@
+.App {
+    text-align: left;
+    max-width: 1920px;
+    height: 100vh;
+
+}
+
+.todo-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.top-layout {
+    background-image: linear-gradient(to right, rgba(9, 5, 47, .65) 0%, rgba(80, 29, 94, .85) 100%), url('../assets/mountains.jpg');
+    background-position: center;
+    background-size: cover;
+
+    height: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo-header-text {
+    color: white;
+}
+
+.todo-container {
+    width: 400px;
+}
+
+.todo-selector {
+    margin-top: 10px;
+}
+
+.checkbox-container {
+    display: flex;
+}
+
+.checkbox-label {
+    margin-left: 7.5px;
+}

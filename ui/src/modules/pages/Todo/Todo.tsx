@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TodoResponse } from '../../../types/api';
 import Input from '../../shared/input/Input';
-import Button from 'modules/shared/button/Button';
+import Button from '../../shared/button/Button';
 
 const todoConstants: TodoResponse[] = [
   { id: 1, name: 'Task 1', isCompleted: false },
@@ -28,6 +28,7 @@ const Todo: React.FC = () => {
       };
       const newTodos: TodoResponse[] = [...todos, newTodo];
       setTodoName('');
+      4;
       setTodos(newTodos);
     }
   };
@@ -63,74 +64,83 @@ const Todo: React.FC = () => {
     setIsActive(false);
     setIsCompleted(false);
   };
-
+  const isActiveButton = (isActive: boolean) => `fs-12 ${isActive ? 'c-blue' : ''}`;
   return (
-    <div className="todo-content">
-      <div className="top-layout">
-        <div className="todo-container">
-          <h1 className="c-white">T O D O</h1>
-          <Input
-            value={todoName}
-            id="todo-input"
-            name={''}
-            label={''}
-            type="text"
-            onChange={onChangeHandler}
-            onKeyUp={onKeyUpHandler}
-            className="todo-selector"
-          />
-        </div>
-      </div>
-      <div className={`bottom-layout ${isTodosExists && 'b-gray'}`}>
-        <ul className="todo-list-container">
-          {todos.map((t: TodoResponse, index: number) => {
-            const onChangeTodoHandler = (value: boolean) => {
-              const newTodos = [...todos];
-              newTodos[index].isCompleted = !value;
-              setTodos(newTodos);
-            };
-            const onCheckedHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-              const checked = !e.target.checked;
-              onChangeTodoHandler(checked);
-            };
-            const onDeleteTodoHandler = () => {
-              const newTodos = todos.filter((todo) => todo.id !== t.id);
-              setTodos(newTodos);
-            };
-            const isVisible = isAll || (t.isCompleted && isCompleted) || (!t.isCompleted && isActive);
-            return (
-              isVisible && (
-                <li className="" id={t.id.toString()} data-value={t.id.toString()}>
-                  <Input
-                    name={t.id.toString()}
-                    label={t.name}
-                    type="checkbox"
-                    checked={t.isCompleted}
-                    onChange={onCheckedHandler}
-                  />
-                  <Button title="X" onClick={onDeleteTodoHandler} />
-                </li>
-              )
-            );
-          })}
-        </ul>
+    <>
+      <footer>{isTodosExists ? 'Drag and drop to reorder list' : ''}</footer>
 
-        <div className="todo-actions">
-          <div className="left">
-            <span>Items left :{uncompletedItemsCount}</span>
-          </div>
-          <div className="middle">
-            <Button title="All" onClick={onClickAllHandler} />
-            <Button title="Active" onClick={onClickActiveHandler} />
-            <Button title="Completed" onClick={onClickCompletedHandler} />
-          </div>
-          <div className="right">
-            <Button title="Clear Completed" onClick={onClearCompletedItems} />
+      <div className="wrapper">
+        <div className="content">
+          {/* Другие блоки */}
+          <div className="todo-wrapper">
+            <div className="todo-content">
+              <h1 className="todo-text c-white">T O D O</h1>
+              <div className="todo-spacer-1"></div>
+              <Input
+                value={todoName}
+                id="todo-input"
+                className="todo-input"
+                name={''}
+                label={''}
+                type="text"
+                onChange={onChangeHandler}
+                onKeyUp={onKeyUpHandler}
+              />
+
+              <div className="todo-spacer-2"></div>
+              <div className="todo-list-container">
+                <ul>
+                  {todos.map((t: TodoResponse, index: number) => {
+                    const onChangeTodoHandler = (value: boolean) => {
+                      const newTodos = [...todos];
+                      newTodos[index].isCompleted = !value;
+                      setTodos(newTodos);
+                    };
+                    const onCheckedHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+                      const checked = !e.target.checked;
+                      onChangeTodoHandler(checked);
+                    };
+                    const onDeleteTodoHandler = () => {
+                      const newTodos = todos.filter((todo) => todo.id !== t.id);
+                      setTodos(newTodos);
+                    };
+                    const isVisible = isAll || (t.isCompleted && isCompleted) || (!t.isCompleted && isActive);
+                    return (
+                      isVisible && (
+                        <li className="" id={t.id.toString()} data-value={t.id.toString()}>
+                          <Input
+                            name={t.id.toString()}
+                            label={t.name}
+                            type="checkbox"
+                            checked={t.isCompleted}
+                            onChange={onCheckedHandler}
+                          />
+                          <Button title="X" onClick={onDeleteTodoHandler} />
+                        </li>
+                      )
+                    );
+                  })}
+                </ul>
+              </div>
+              <div className="todo-list-actions">
+                <div className="left">
+                  <span className="fs-12">{uncompletedItemsCount} items left </span>
+                </div>
+                <div className="middle">
+                  <Button className={isActiveButton(isAll)} title="All" onClick={onClickAllHandler} />
+                  <Button className={isActiveButton(isActive)} title="Active" onClick={onClickActiveHandler} />
+                  <Button className={isActiveButton(isCompleted)} title="Completed" onClick={onClickCompletedHandler} />
+                </div>
+                <div className="right">
+                  <Button className="fs-12" title="Clear Completed" onClick={onClearCompletedItems} />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        {isTodosExists ? 'Drag and drop to reorder list' : ''}
+        <div className="background-image" />
       </div>
-    </div>
+    </>
   );
 };
 

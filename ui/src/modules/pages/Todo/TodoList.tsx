@@ -1,6 +1,7 @@
 import React from 'react';
 import { TodoResponse } from '../../../types/api';
 import Input from '../../shared/input/Input';
+import { input } from 'appConstants';
 
 interface TodoListProps {
   todos: TodoResponse[];
@@ -14,7 +15,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos }) => (
           <Input
             name={t.id.toString()}
             label={t.name}
-            type="checkbox"
+            type={input.checkbox}
             checked={t.isCompleted}
             onChange={(e) => {}}
           />

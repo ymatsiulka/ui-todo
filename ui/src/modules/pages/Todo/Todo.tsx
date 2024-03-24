@@ -2,10 +2,10 @@ import React, { useRef, useState } from 'react';
 import Input from '../../shared/input/Input';
 import Button from '../../shared/button/Button';
 import { Icon } from '@iconify/react';
-import { todoResponseFactory } from '../../../factories/TodoResponseFactory';
-import { TodoResponse } from '../../../types/api';
-import { TodoPageStatuses } from '../../../types/frontend';
-import { todosConstants, input, keys } from '../../../appConstants';
+import { todoResponseFactory } from 'factories/todoResponseFactory';
+import { TodoResponse } from 'types/api';
+import { TodoPageStatuses } from 'types/frontend';
+import { todosConstants, input, keys } from 'appConstants';
 import TodoListActions from './TodoListActions';
 
 const Todo: React.FC = () => {

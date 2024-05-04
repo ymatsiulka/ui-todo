@@ -124,7 +124,28 @@ input:focus-visible {
   cursor: pointer;
 }
 
-input[type="checkbox"] {
-  border-radius: 50% !important;
+.w-100 {
+  width: 100%;
 }
 
+.f-align-horizontal-center {
+  justify-content: center;
+}
+
+.f-align-vertical-center {
+  align-items: center;
+}
+
+
+input[type="checkbox"] {
+  display: none;
+  /* Hide the default checkbox */
+}
+
+input[type="checkbox"]+.checkmark:before {
+  content: url('../assets/checkbox-circle-line.svg');
+}
+
+input[type="checkbox"]:checked+.checkmark:before {
+  content: url('../assets/circle-outline.svg');
+}

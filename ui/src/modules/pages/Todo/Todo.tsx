@@ -7,10 +7,11 @@ import { TodoResponse } from 'types/api';
 import { TodoPageStatuses } from 'types/frontend';
 import { todosConstants, input, keys } from 'appConstants';
 import TodoListActions from './TodoListActions';
+import Checkbox from 'modules/shared/checkbox/Checkbox';
 
 const Todo: React.FC = () => {
   const [todos, setTodos] = useState<TodoResponse[]>(todosConstants);
-  const [todoPageStatus, setTodoPageStatus] = useState<TodoPageStatuses>();
+  const [todoPageStatus, setTodoPageStatus] = useState<TodoPageStatuses>(TodoPageStatuses.All);
   const [todoName, setTodoName] = useState('');
 
   const dragPerson = useRef<number>(0);
@@ -78,20 +79,14 @@ const Todo: React.FC = () => {
                 onChange={onChangeHandler}
                 onKeyUp={onKeyUpHandler}
               />
-
               <div className="todo-spacer-2"></div>
               <div className="todo-list-container">
                 <ul>
                   {todos.map((t: TodoResponse, index: number) => {
                     const onChangeTodoHandler = (value: boolean) => {
                       const newTodos = [...todos];
-                      newTodos[index].isCompleted = !value;
+                      newTodos[index].isCompleted = value;
                       setTodos(newTodos);
-                    };
-
-                    const onCheckedHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-                      const checked = !e.target.checked;
-                      onChangeTodoHandler(checked);
                     };
 
                     const onDeleteTodoHandler = () => {
@@ -116,12 +111,11 @@ const Todo: React.FC = () => {
                           id={t.id.toString()}
                           data-value={t.id.toString()}
                         >
-                          <Input
+                          <Checkbox
                             name={t.id.toString()}
+                            onCheckedHandler={onChangeTodoHandler}
+                            isChecked={t.isCompleted}
                             label={t.name}
-                            type={input.checkbox}
-                            checked={t.isCompleted}
-                            onChange={onCheckedHandler}
                           />
                           <Button onClick={onDeleteTodoHandler}>
                             <Icon icon="system-uicons:cross" width={24} height={24} />

@@ -2,6 +2,7 @@ import React, { InputHTMLAttributes } from 'react';
 import { input } from 'appConstants';
 
 interface CheckboxProps {
+  id: number;
   name: string;
   isChecked: boolean;
   label: string;
@@ -9,20 +10,25 @@ interface CheckboxProps {
   onCheckedHandler: (booleanValue: boolean) => void;
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ name, label, isChecked, onCheckedHandler }) => {
+const Checkbox: React.FC<CheckboxProps> = ({ id, name, label, isChecked, onCheckedHandler }) => {
+  const prefix_id = `checkbox_${id}`;
   return (
-    <div className="checkbox-wrapper d-flex w-100 f-align-vertical-center ">
-      <input
-        className={'checkbox-custom'}
-        name={name}
-        type={input.checkbox}
-        checked={isChecked}
-        onChange={(e) => {
-          const value = e.target.checked;
-          onCheckedHandler(value);
-        }}
-      />
-      <label className="w-100 checkmark">{label}</label>
+    <div className="checkbox-wrapper">
+      <label htmlFor={prefix_id} className="d-flex w-100 f-align-vertical-center">
+        <input
+          id={prefix_id}
+          className="checkbox__input"
+          name={name}
+          type={input.checkbox}
+          checked={isChecked}
+          onChange={(e) => {
+            const value = e.target.checked;
+            onCheckedHandler(value);
+          }}
+        />
+        <span className="check__box" />
+        {label}
+      </label>
     </div>
   );
 };

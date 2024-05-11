@@ -13,7 +13,7 @@ const Todo: React.FC = () => {
   const [todos, setTodos] = useState<TodoResponse[]>(todosConstants);
   const [todoPageStatus, setTodoPageStatus] = useState<TodoPageStatuses>(TodoPageStatuses.All);
   const [todoName, setTodoName] = useState('');
-
+  console.log(JSON.stringify(todos));
   const dragPerson = useRef<number>(0);
   const draggedOverPerson = useRef<number>(0);
 
@@ -112,6 +112,7 @@ const Todo: React.FC = () => {
                           data-value={t.id.toString()}
                         >
                           <Checkbox
+                            id={t.id}
                             name={t.id.toString()}
                             onCheckedHandler={onChangeTodoHandler}
                             isChecked={t.isCompleted}

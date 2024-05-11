@@ -3,6 +3,7 @@ export enum TodoPageStatuses {
   Active,
   Completed,
 }
+
 export type TodoPageProps = {
-  todoPageStatus: boolean;
+  todoPageStatus: TodoPageStatuses;
 };

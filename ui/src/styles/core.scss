@@ -40,12 +40,11 @@ input:focus-visible {
 .todo-list-container {
   width: 400px;
   height: 400px;
-  border: 1px solid lightgrey;
-  border-radius: 2px;
-  padding: 8px;
   background-color: $white;
   margin: 0 auto;
   margin-top: 10px;
+  border-radius: 2px;
+
   overflow-y: auto;
 }
 
@@ -74,8 +73,11 @@ input:focus-visible {
   align-items: center;
   background-color: white;
   padding: 10px;
-  border: 1px solid lightgrey;
-  border-top: none
+  // border: 1px solid lightgrey;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  box-shadow:
+    0 3px 3px rgba(0, 0, 0, 0.05)
 }
 
 .todo-list-actions>.left>span {
@@ -101,6 +103,16 @@ input:focus-visible {
 .todo-checkbox-item {
   display: flex;
   justify-content: space-between;
+  padding: 10px;
+  padding: 8px;
+  border-bottom: 1px solid #E3E3E3;
+  -webkit-transition: all 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.todo-checkbox-item:hover {
+  box-shadow:
+    0 3px 3px rgba(0, 0, 0, 0.05)
 }
 
 .checkbox {
@@ -136,16 +148,36 @@ input:focus-visible {
   align-items: center;
 }
 
-
-input[type="checkbox"] {
-  display: none;
-  /* Hide the default checkbox */
+.checkbox-wrapper {
+  padding-left: 1.2em;
 }
 
-input[type="checkbox"]+.checkmark:before {
-  content: url('../assets/checkbox-circle-line.svg');
+.checkbox-wrapper label {
+  width: 100%;
 }
 
-input[type="checkbox"]:checked+.checkmark:before {
-  content: url('../assets/circle-outline.svg');
+.checkbox__input {
+  position: absolute;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.check__box {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  background-image: url("../assets/circle-outline.svg");
+  margin-left: -1.2em;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-size: contain;
+}
+
+.check__box:hover {
+  background-image: url("../assets/circle-outline-hover.svg");
+}
+
+.checkbox__input:checked+.check__box {
+  background-image: url("../assets/checkbox-circle.svg");
 }

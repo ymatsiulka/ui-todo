@@ -60,7 +60,7 @@ const Todo: React.FC = () => {
 
   return (
     <>
-      <footer>{todos.length > 0 && 'Drag and drop to reorder list'}</footer>
+      <footer>{todos.length > 1 && 'Drag and drop to reorder list'}</footer>
 
       <div className="wrapper">
         <div className="content">

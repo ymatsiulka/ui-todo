@@ -160,6 +160,7 @@ input:focus-visible {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .checkbox-wrapper label {
@@ -184,12 +185,12 @@ input:focus-visible {
   background-size: contain;
 }
 
-.checkbox__input+.check__box:hover {
-  background-image: url("../assets/circle-outline-hover.svg");
-}
-
 .checkbox__input:checked+.check__box {
   background-image: url("../assets/checkbox-circle.svg");
+}
+
+label:hover>.checkbox__input:not(:checked)+.check__box {
+  background-image: url("../assets/circle-outline-hover.svg");
 }
 
 .reset-margin {

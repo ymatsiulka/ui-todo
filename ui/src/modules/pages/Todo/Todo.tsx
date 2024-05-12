@@ -48,7 +48,7 @@ const Todo: React.FC = () => {
 
   const onKeyUpHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === keys.enter) {
-      const newTodos: TodoResponse[] = [todoResponseFactory.create(todoName), ...todos].map((t) => {
+      const newTodos: TodoResponse[] = [todoResponseFactory.create(todos.length + 1, todoName), ...todos].map((t) => {
         return { ...t, order: t.order + 1 };
       });
       setTodoName('');

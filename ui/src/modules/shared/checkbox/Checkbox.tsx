@@ -27,7 +27,8 @@ const Checkbox: React.FC<CheckboxProps> = ({ id, name, label, isChecked, onCheck
           }}
         />
         <span className="check__box" />
-        {label}
+        {!isChecked && label}
+        {isChecked && <s style={{ color: '#B7B7BA' }}>{label}</s>}
       </label>
     </div>
   );

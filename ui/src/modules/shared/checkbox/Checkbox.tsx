@@ -14,7 +14,7 @@ const Checkbox: React.FC<CheckboxProps> = ({ id, name, label, isChecked, onCheck
   const prefix_id = `checkbox_${id}`;
   return (
     <div className="checkbox-wrapper">
-      <label htmlFor={prefix_id} className="d-flex w-100 f-align-vertical-center">
+      <label htmlFor={prefix_id} className="d-flex w-100 f-align-vertical-center gap-10">
         <input
           id={prefix_id}
           className="checkbox__input"

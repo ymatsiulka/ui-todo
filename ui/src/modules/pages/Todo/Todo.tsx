@@ -78,7 +78,9 @@ const Todo: React.FC = () => {
                 type={input.text}
                 onChange={onChangeHandler}
                 onKeyUp={onKeyUpHandler}
-              />
+              >
+                <span className="check__box" style={{ marginLeft: '0px', marginRight: '0px' }} />
+              </Input>
               <div className="todo-spacer-2"></div>
               <div className="todo-list-container">
                 <ul>

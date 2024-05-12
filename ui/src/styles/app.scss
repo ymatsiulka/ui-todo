@@ -29,7 +29,7 @@ body {
 }
 
 .wrapper::before {
-    background-image: linear-gradient(to right, rgba(9, 5, 47, .65) 0%, rgba(80, 29, 94, .85) 100%), url('../assets/mountains.jpg');
+    background-image: linear-gradient(to left, rgba(113, 165, 251, 0.8) 0%, rgba(184, 97, 238, 0.75) 100%), url('../assets/mountains.jpg');
     content: '';
     background-size: cover;
     background-position: center;

@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "React application to make request to create todo cards",
   "scripts": {
-    "build": "if-env TYPE=api && (cd api && npm i) || (cd ui && npm i)",
-    "api": "cd api && npm run dev",
+    "build": "if-env TYPE=ui && (cd ui && npm i)",
     "ui": "cd ui && npm start",
-    "start": "start npm run ui && start npm run api"
+    "start": "start npm run ui"
   },
   "dependencies": {
     "if-env": "^1.0.4"

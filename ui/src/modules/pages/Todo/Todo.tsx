@@ -1,15 +1,11 @@
 import React, { useRef, useState } from 'react';
-import Input from '../../shared/input/Input';
-import Button from '../../shared/button/Button';
+import { Checkbox, Button, Input } from 'modules/shared';
 import { Icon } from '@iconify/react';
-import { todoResponseFactory } from 'factories/todoResponseFactory';
 import { TodoResponse } from 'types/api';
 import { TodoPageStatuses } from 'types/frontend';
-import { todosConstants, input, keys } from 'appConstants';
+import { input, keys } from 'appConstants';
 import TodoListActions from './TodoListActions';
-import Checkbox from 'modules/shared/checkbox/Checkbox';
-import { useDispatch, useSelector } from 'react-redux';
-import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import {
   addTodo,
   checkTodo,
@@ -28,11 +24,6 @@ const Todo: React.FC = () => {
   const todosItems = todosState.items;
   const dispatch = useAppDispatch();
   const handleSort = () => {
-    // const todoClone = [...todosItems];
-    // const temp = todoClone[dragTodo.current];
-    // todoClone[dragTodo.current] = todoClone[draggedOverTodo.current];
-    // todoClone[draggedOverTodo.current] = temp;
-    // setTodos(todoClone);
     dispatch(moveTodos({ firstIndex: dragTodo.current, secondIndex: draggedOverTodo.current }));
   };
 
@@ -62,14 +53,13 @@ const Todo: React.FC = () => {
       dispatch(addTodo({ todoName }));
     }
   };
-  const uncompletedItemsCount = uncompletedSelectItemsCount(todosState);
 
+  const uncompletedItemsCount = uncompletedSelectItemsCount(todosState);
   return (
     <>
       <footer>{todosItems.length > 1 && 'Drag and drop to reorder list'}</footer>
       <div className="wrapper">
         <div className="content">
-          {/* Другие блоки */}
           <div className="todo-wrapper">
             <div className="todo-content">
               <h1 className="todo-text c-white">T O D O</h1>

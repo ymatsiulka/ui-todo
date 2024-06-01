@@ -1,6 +1,6 @@
 import React from 'react';
 import { TodoPageStatuses } from '../../../types/frontend';
-import Button from '../../../modules/shared/button/Button';
+import Button from '../../shared/Button';
 
 interface TodoListActionsProps {
   todoPageStatus: TodoPageStatuses;

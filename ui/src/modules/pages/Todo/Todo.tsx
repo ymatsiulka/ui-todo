@@ -8,21 +8,32 @@ import { TodoPageStatuses } from 'types/frontend';
 import { todosConstants, input, keys } from 'appConstants';
 import TodoListActions from './TodoListActions';
 import Checkbox from 'modules/shared/checkbox/Checkbox';
+import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import {
+  addTodo,
+  checkTodo,
+  deleteTodo,
+  clearTodos,
+  uncompletedSelectItemsCount,
+  moveTodos,
+} from 'store/features/todos/todosSlice';
 
 const Todo: React.FC = () => {
-  const [todos, setTodos] = useState<TodoResponse[]>(todosConstants);
   const [todoPageStatus, setTodoPageStatus] = useState<TodoPageStatuses>(TodoPageStatuses.All);
   const [todoName, setTodoName] = useState('');
-  console.log(JSON.stringify(todos));
-  const dragPerson = useRef<number>(0);
-  const draggedOverPerson = useRef<number>(0);
-
+  const dragTodo = useRef<number>(0);
+  const draggedOverTodo = useRef<number>(0);
+  const todosState = useAppSelector((state) => state.todos);
+  const todosItems = todosState.items;
+  const dispatch = useAppDispatch();
   const handleSort = () => {
-    const peopleClone = [...todos];
-    const temp = peopleClone[dragPerson.current];
-    peopleClone[dragPerson.current] = peopleClone[draggedOverPerson.current];
-    peopleClone[draggedOverPerson.current] = temp;
-    setTodos(peopleClone);
+    // const todoClone = [...todosItems];
+    // const temp = todoClone[dragTodo.current];
+    // todoClone[dragTodo.current] = todoClone[draggedOverTodo.current];
+    // todoClone[draggedOverTodo.current] = temp;
+    // setTodos(todoClone);
+    dispatch(moveTodos({ firstIndex: dragTodo.current, secondIndex: draggedOverTodo.current }));
   };
 
   const onClickCompletedHandler = () => {
@@ -42,26 +53,20 @@ const Todo: React.FC = () => {
   };
 
   const onClickClearCompletedHandler = () => {
-    const newTodos: TodoResponse[] = todos.map((todo) => (todo.isCompleted ? { ...todo, isCompleted: false } : todo));
-    setTodos([...newTodos]);
+    dispatch(clearTodos());
   };
 
   const onKeyUpHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === keys.enter) {
-      const newTodos: TodoResponse[] = [todoResponseFactory.create(todos.length + 1, todoName), ...todos].map((t) => {
-        return { ...t, order: t.order + 1 };
-      });
       setTodoName('');
-      setTodos(newTodos);
+      dispatch(addTodo({ todoName }));
     }
   };
-
-  const uncompletedItemsCount = todos.filter((t) => !t.isCompleted).length;
+  const uncompletedItemsCount = uncompletedSelectItemsCount(todosState);
 
   return (
     <>
-      <footer>{todos.length > 1 && 'Drag and drop to reorder list'}</footer>
-
+      <footer>{todosItems.length > 1 && 'Drag and drop to reorder list'}</footer>
       <div className="wrapper">
         <div className="content">
           {/* Другие блоки */}
@@ -84,16 +89,13 @@ const Todo: React.FC = () => {
               <div className="todo-spacer-2"></div>
               <div className="todo-list-container">
                 <ul>
-                  {todos.map((t: TodoResponse, index: number) => {
+                  {todosItems.map((t: TodoResponse, index: number) => {
                     const onChangeTodoHandler = (value: boolean) => {
-                      const newTodos = [...todos];
-                      newTodos[index].isCompleted = value;
-                      setTodos(newTodos);
+                      dispatch(checkTodo({ id: t.id, isChecked: value }));
                     };
 
                     const onDeleteTodoHandler = () => {
-                      const newTodos = todos.filter((todo) => todo.id !== t.id);
-                      setTodos(newTodos);
+                      dispatch(deleteTodo({ id: t.id }));
                     };
 
                     const isVisible =
@@ -105,8 +107,8 @@ const Todo: React.FC = () => {
                       isVisible && (
                         <li
                           draggable
-                          onDragStart={() => (dragPerson.current = index)}
-                          onDragEnter={() => (draggedOverPerson.current = index)}
+                          onDragStart={() => (dragTodo.current = index)}
+                          onDragEnter={() => (draggedOverTodo.current = index)}
                           onDragEnd={handleSort}
                           onDragOver={(e) => e.preventDefault()}
                           className="todo-checkbox-item"

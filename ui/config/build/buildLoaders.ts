@@ -34,15 +34,6 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
     ],
   };
 
-  const cssLoaderWithModules = {
-    loader: 'css-loader',
-    // options: {
-    //     modules: {
-    //         localIdentName: '[hash:base64:8]',
-    //     }
-    // },
-  };
-
   const scssLoader = {
     test: /\.s[ac]ss$/i,
     use: [
@@ -50,8 +41,17 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
       // isDev?'style-loader':
       MiniCssExtractPlugin.loader,
       // Translates CSS into CommonJS
-      cssLoaderWithModules,
+      {
+        loader: 'css-loader',
+        options: {
+          modules: {
+            auto: /\.m\.scss$/,
+            localIdentName: '[hash:base64:8]',
+          },
+        },
+      },
       // Compiles Sass to CSS
+
       'sass-loader',
     ],
   };

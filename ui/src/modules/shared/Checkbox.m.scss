@@ -1,0 +1,22 @@
+.checkboxWrapper {
+    padding-left: 1.2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    label {
+        width: 100%;
+
+        &:hover>.checkbox__input:not(:checked)+.check__box {
+            background-image: url("assets/circle-outline-hover.svg");
+        }
+    }
+}
+
+.checkbox__input {
+    position: absolute;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}

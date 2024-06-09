@@ -1,6 +1,7 @@
 import React from 'react';
-import { TodoPageStatuses } from '../../../types/frontend';
-import Button from '../../shared/Button';
+import { TodoPageStatuses } from 'types/frontend';
+import { Button } from 'modules/shared';
+import styles from './TodoListActions.m.scss';
 
 interface TodoListActionsProps {
   todoPageStatus: TodoPageStatuses;
@@ -22,7 +23,7 @@ const TodoListActions: React.FC<TodoListActionsProps> = ({
   const isActiveButton = (isActive: boolean) => `fs-12 ${isActive && 'c-blue'}`;
 
   return (
-    <div className="todo-list-actions">
+    <div className={styles.todoListActions}>
       <div className="left">
         <span className="fs-12">{uncompletedItemsCount} items left </span>
       </div>

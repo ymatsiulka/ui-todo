@@ -1,4 +1,5 @@
 import React, { InputHTMLAttributes } from 'react';
+import styles from './Input.m.scss';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -8,7 +9,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const Input: React.FC<InputProps> = ({ name, label, children, ...rest }) => {
   return (
-    <div className="input-wrapper">
+    <div className={styles.inputWrapper}>
       {children}
 
       <input id={name} {...rest} />

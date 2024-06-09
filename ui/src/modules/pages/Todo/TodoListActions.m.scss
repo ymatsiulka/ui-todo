@@ -1,0 +1,23 @@
+.todoListActions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05)
+}
+
+.todoListActions>.left>span {
+    margin: 0;
+    background-color: white;
+    color: grey;
+    padding: 2px 2px;
+
+}
+
+.todoListActions>.middle>button {
+    margin-left: 5px;
+    margin-right: 5px;
+}

@@ -14,6 +14,7 @@ import {
   uncompletedSelectItemsCount,
   moveTodos,
 } from 'store/features/todos/todosSlice';
+import styles from './Todo.m.scss';
 
 const Todo: React.FC = () => {
   const [todoPageStatus, setTodoPageStatus] = useState<TodoPageStatuses>(TodoPageStatuses.All);
@@ -58,12 +59,12 @@ const Todo: React.FC = () => {
   return (
     <>
       <footer>{todosItems.length > 1 && 'Drag and drop to reorder list'}</footer>
-      <div className="wrapper">
-        <div className="content">
+      <div className={styles.wrapper}>
+        <div className={styles.content}>
           <div className="todo-wrapper">
-            <div className="todo-content">
+            <div className={styles.todoContent}>
               <h1 className="todo-text c-white">T O D O</h1>
-              <div className="todo-spacer-1"></div>
+              <div className="spacer-1" />
               <Input
                 value={todoName}
                 id="todo-input"
@@ -76,8 +77,8 @@ const Todo: React.FC = () => {
               >
                 <span className="check__box" style={{ marginLeft: '0px', marginRight: '0px' }} />
               </Input>
-              <div className="todo-spacer-2"></div>
-              <div className="todo-list-container">
+              <div className="spacer-2" />
+              <div className={styles.todoListContainer}>
                 <ul>
                   {todosItems.map((t: TodoResponse, index: number) => {
                     const onChangeTodoHandler = (value: boolean) => {
@@ -101,7 +102,7 @@ const Todo: React.FC = () => {
                           onDragEnter={() => (draggedOverTodo.current = index)}
                           onDragEnd={handleSort}
                           onDragOver={(e) => e.preventDefault()}
-                          className="todo-checkbox-item"
+                          className={styles.todoCheckboxItem}
                           id={t.id.toString()}
                           data-value={t.id.toString()}
                         >

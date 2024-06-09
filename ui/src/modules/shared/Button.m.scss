@@ -6,8 +6,8 @@
     padding: 2px 2px;
     cursor: pointer;
     transition: 300ms;
-}
 
-button:hover {
-    color: #403D4E;
+    &:hover {
+        color: #403D4E;
+    }
 }

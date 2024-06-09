@@ -1,5 +1,6 @@
-import React, { InputHTMLAttributes } from 'react';
+import React from 'react';
 import { input } from 'appConstants';
+import styles from './Checkbox.m.scss';
 
 interface CheckboxProps {
   id: number;
@@ -13,11 +14,11 @@ interface CheckboxProps {
 const Checkbox: React.FC<CheckboxProps> = ({ id, name, label, isChecked, onCheckedHandler }) => {
   const prefix_id = `checkbox_${id}`;
   return (
-    <div className="checkbox-wrapper">
+    <div className={styles.checkboxWrapper}>
       <label htmlFor={prefix_id} className="d-flex w-100 f-align-vertical-center gap-10">
         <input
           id={prefix_id}
-          className="checkbox__input"
+          className={styles.checkbox__input}
           name={name}
           type={input.checkbox}
           checked={isChecked}

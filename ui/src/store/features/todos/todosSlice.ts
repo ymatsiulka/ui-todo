@@ -1,6 +1,6 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { todoResponseFactory } from 'factories';
-import { TodoState } from 'types/redux/TodoState';
+import { type TodoState } from 'types/redux/TodoState';
 
 const initialState: TodoState = {
   items: [],
@@ -40,7 +40,8 @@ const todosSlice = createSlice({
   },
 });
 
-export const uncompletedSelectItemsCount = (state: TodoState) => state.items.filter((t) => !t.isCompleted).length;
+export const uncompletedSelectItemsCount = (state: TodoState): number =>
+  state.items.filter((t) => !t.isCompleted).length;
 
 export const { addTodo, checkTodo, deleteTodo, clearTodos, moveTodos } = todosSlice.actions;
 export default todosSlice.reducer;

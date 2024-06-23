@@ -17,8 +17,8 @@ export function buildPlugins({mode, paths, analyzer, platform}: BuildOptions): C
             template: paths.html
          }),
         new DefinePlugin({
-            __PLATFORM__: JSON.stringify(platform),
-            __ENV__: JSON.stringify(mode),
+            platform: JSON.stringify(platform),
+            environment: JSON.stringify(mode),
         }),
 
     ]

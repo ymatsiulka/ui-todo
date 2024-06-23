@@ -20,7 +20,7 @@ const TodoListActions: React.FC<TodoListActionsProps> = ({
   onClickCompletedHandler,
   onClickClearCompletedHandler,
 }) => {
-  const isActiveButton = (isActive: boolean) => `fs-12 ${isActive && 'c-blue'}`;
+  const activeButtonClassName = (isActive: boolean): string => `fs-12 ${isActive && 'c-blue'}`;
 
   return (
     <div className={styles.todoListActions}>
@@ -29,17 +29,17 @@ const TodoListActions: React.FC<TodoListActionsProps> = ({
       </div>
       <div className="middle">
         <Button
-          className={isActiveButton(todoPageStatus == TodoPageStatuses.All)}
+          className={activeButtonClassName(todoPageStatus === TodoPageStatuses.All)}
           title="All"
           onClick={onClickAllHandler}
         />
         <Button
-          className={isActiveButton(todoPageStatus == TodoPageStatuses.Active)}
+          className={activeButtonClassName(todoPageStatus === TodoPageStatuses.Active)}
           title="Active"
           onClick={onClickActiveHandler}
         />
         <Button
-          className={isActiveButton(todoPageStatus == TodoPageStatuses.Completed)}
+          className={activeButtonClassName(todoPageStatus === TodoPageStatuses.Completed)}
           title="Completed"
           onClick={onClickCompletedHandler}
         />

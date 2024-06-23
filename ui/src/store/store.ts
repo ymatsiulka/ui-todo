@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { storage } from 'appConstants';
 import { loadFromLocalStorage, saveToLocalStorage } from 'storage';
-import { TodoState } from 'types/redux/TodoState';
+import { type TodoState } from 'types/redux/TodoState';
 import todosReducer from 'store/features/todos/todosSlice';
 
 export const store = configureStore({

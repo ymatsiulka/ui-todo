@@ -4,6 +4,6 @@ export enum TodoPageStatuses {
   Completed,
 }
 
-export type TodoPageProps = {
+export interface TodoPageProps {
   todoPageStatus: TodoPageStatuses;
-};
+}

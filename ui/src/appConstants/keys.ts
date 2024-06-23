@@ -1,3 +1,3 @@
-export const keys = {
+export const keys: Record<string, string> = {
   enter: 'Enter',
 };

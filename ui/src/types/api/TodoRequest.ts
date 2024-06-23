@@ -1,3 +1,3 @@
-export type TodoRequest = {
-    name: string
+export interface TodoRequest {
+  name: string;
 }

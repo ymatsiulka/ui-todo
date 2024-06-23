@@ -1,4 +1,4 @@
-import { TodoResponse } from 'types/api';
+import { type TodoResponse } from 'types/api';
 
 export const todosConstants: TodoResponse[] = [
   { id: 1, name: 'Task 1', isCompleted: false, order: 1 },

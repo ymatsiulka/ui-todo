@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { ButtonProps } from 'types/frontend';
+import { type ButtonProps } from 'types/frontend';
 import styles from './Button.m.scss';
 
 const Button: React.FC<ButtonProps> = ({ className, children, type, title, ...props }) => {

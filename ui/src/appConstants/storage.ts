@@ -1,4 +1,3 @@
-export const storage = {
-    reduxTodos: 'redux-todos',
-  };
-  
+export const storage: Record<string, string> = {
+  reduxTodos: 'redux-todos',
+};

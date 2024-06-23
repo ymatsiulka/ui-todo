@@ -12,12 +12,12 @@ interface CheckboxProps {
 }
 
 const Checkbox: React.FC<CheckboxProps> = ({ id, name, label, isChecked, onCheckedHandler }) => {
-  const prefix_id = `checkbox_${id}`;
+  const prefixId = `checkbox_${id}`;
   return (
     <div className={styles.checkboxWrapper}>
-      <label htmlFor={prefix_id} className="d-flex w-100 f-align-vertical-center gap-10">
+      <label htmlFor={prefixId} className="d-flex w-100 f-align-vertical-center gap-10">
         <input
-          id={prefix_id}
+          id={prefixId}
           className={styles.checkbox__input}
           name={name}
           type={input.checkbox}

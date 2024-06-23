@@ -1,5 +1,5 @@
-import { TodoResponse } from 'types/api';
+import { type TodoResponse } from 'types/api';
 
-export type TodoState = {
+export interface TodoState {
   items: TodoResponse[];
-};
+}

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Checkbox, Button, Input } from 'modules/shared';
 import { Icon } from '@iconify/react';
-import { TodoResponse } from 'types/api';
+import { type TodoResponse } from 'types/api';
 import { TodoPageStatuses } from 'types/frontend';
 import { input, keys } from 'appConstants';
 import TodoListActions from './TodoListActions';
@@ -24,31 +24,31 @@ const Todo: React.FC = () => {
   const todosState = useAppSelector((state) => state.todos);
   const todosItems = todosState.items;
   const dispatch = useAppDispatch();
-  const handleSort = () => {
+  const handleSort = (): void => {
     dispatch(moveTodos({ firstIndex: dragTodo.current, secondIndex: draggedOverTodo.current }));
   };
 
-  const onClickCompletedHandler = () => {
+  const onClickCompletedHandler = (): void => {
     setTodoPageStatus(TodoPageStatuses.Completed);
   };
 
-  const onClickActiveHandler = () => {
+  const onClickActiveHandler = (): void => {
     setTodoPageStatus(TodoPageStatuses.Active);
   };
 
-  const onClickAllHandler = () => {
+  const onClickAllHandler = (): void => {
     setTodoPageStatus(TodoPageStatuses.All);
   };
 
-  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setTodoName(e.target.value);
   };
 
-  const onClickClearCompletedHandler = () => {
+  const onClickClearCompletedHandler = (): void => {
     dispatch(clearTodos());
   };
 
-  const onKeyUpHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const onKeyUpHandler = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === keys.enter) {
       setTodoName('');
       dispatch(addTodo({ todoName }));
@@ -81,18 +81,18 @@ const Todo: React.FC = () => {
               <div className={styles.todoListContainer}>
                 <ul>
                   {todosItems.map((t: TodoResponse, index: number) => {
-                    const onChangeTodoHandler = (value: boolean) => {
+                    const onChangeTodoHandler = (value: boolean): void => {
                       dispatch(checkTodo({ id: t.id, isChecked: value }));
                     };
 
-                    const onDeleteTodoHandler = () => {
+                    const onDeleteTodoHandler = (): void => {
                       dispatch(deleteTodo({ id: t.id }));
                     };
 
                     const isVisible =
-                      todoPageStatus == TodoPageStatuses.All ||
-                      (t.isCompleted && todoPageStatus == TodoPageStatuses.Completed) ||
-                      (!t.isCompleted && todoPageStatus == TodoPageStatuses.Active);
+                      todoPageStatus === TodoPageStatuses.All ||
+                      (t.isCompleted && todoPageStatus === TodoPageStatuses.Completed) ||
+                      (!t.isCompleted && todoPageStatus === TodoPageStatuses.Active);
 
                     return (
                       isVisible && (
@@ -101,7 +101,9 @@ const Todo: React.FC = () => {
                           onDragStart={() => (dragTodo.current = index)}
                           onDragEnter={() => (draggedOverTodo.current = index)}
                           onDragEnd={handleSort}
-                          onDragOver={(e) => e.preventDefault()}
+                          onDragOver={(e) => {
+                            e.preventDefault();
+                          }}
                           className={styles.todoCheckboxItem}
                           id={t.id.toString()}
                           data-value={t.id.toString()}

@@ -1,32 +1,31 @@
 import React, { useRef, useState } from 'react';
-import { Checkbox, Button, Input } from 'modules/shared';
-import { Icon } from '@iconify/react';
+import { Input } from 'modules/shared';
 import { type TodoResponse } from 'types/api';
 import { TodoPageStatuses } from 'types/frontend';
 import { input, keys } from 'appConstants';
 import TodoListActions from './TodoListActions';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import {
-  addTodo,
-  checkTodo,
-  deleteTodo,
-  clearTodos,
-  uncompletedSelectItemsCount,
-  moveTodos,
-} from 'store/features/todos/todosSlice';
+import { addTodo, clearTodos, moveTodos, uncompletedSelectItemsCount } from 'store/features/todos/todosSlice';
 import styles from './Todo.m.scss';
+import TodoListItem from './TotoListItem';
 
 const Todo: React.FC = () => {
   const [todoPageStatus, setTodoPageStatus] = useState<TodoPageStatuses>(TodoPageStatuses.All);
   const [todoName, setTodoName] = useState('');
   const dragTodo = useRef<number>(0);
   const draggedOverTodo = useRef<number>(0);
+  const onDragEndHandler = (): void => {
+    dispatch(moveTodos({ firstIndex: dragTodo.current, secondIndex: draggedOverTodo.current }));
+  };
+  const onDragStartHandler = (index: number): void => {
+    dragTodo.current = index;
+  };
+  const onDragEnterHandler = (index: number): void => {
+    draggedOverTodo.current = index;
+  };
   const todosState = useAppSelector((state) => state.todos);
   const todosItems = todosState.items;
   const dispatch = useAppDispatch();
-  const handleSort = (): void => {
-    dispatch(moveTodos({ firstIndex: dragTodo.current, secondIndex: draggedOverTodo.current }));
-  };
 
   const onClickCompletedHandler = (): void => {
     setTodoPageStatus(TodoPageStatuses.Completed);
@@ -58,7 +57,6 @@ const Todo: React.FC = () => {
   const uncompletedItemsCount = uncompletedSelectItemsCount(todosState);
   return (
     <>
-      <footer>{todosItems.length > 1 && 'Drag and drop to reorder list'}</footer>
       <div className={styles.wrapper}>
         <div className={styles.content}>
           <div className="todo-wrapper">
@@ -81,45 +79,22 @@ const Todo: React.FC = () => {
               <div className={styles.todoListContainer}>
                 <ul>
                   {todosItems.map((t: TodoResponse, index: number) => {
-                    const onChangeTodoHandler = (value: boolean): void => {
-                      dispatch(checkTodo({ id: t.id, isChecked: value }));
-                    };
-
-                    const onDeleteTodoHandler = (): void => {
-                      dispatch(deleteTodo({ id: t.id }));
-                    };
-
-                    const isVisible =
-                      todoPageStatus === TodoPageStatuses.All ||
-                      (t.isCompleted && todoPageStatus === TodoPageStatuses.Completed) ||
-                      (!t.isCompleted && todoPageStatus === TodoPageStatuses.Active);
-
                     return (
-                      isVisible && (
-                        <li
-                          draggable
-                          onDragStart={() => (dragTodo.current = index)}
-                          onDragEnter={() => (draggedOverTodo.current = index)}
-                          onDragEnd={handleSort}
-                          onDragOver={(e) => {
-                            e.preventDefault();
-                          }}
-                          className={styles.todoCheckboxItem}
-                          id={t.id.toString()}
-                          data-value={t.id.toString()}
-                        >
-                          <Checkbox
-                            id={t.id}
-                            name={t.id.toString()}
-                            onCheckedHandler={onChangeTodoHandler}
-                            isChecked={t.isCompleted}
-                            label={t.name}
-                          />
-                          <Button onClick={onDeleteTodoHandler}>
-                            <Icon icon="system-uicons:cross" width={24} height={24} />
-                          </Button>
-                        </li>
-                      )
+                      <TodoListItem
+                        key={`todo-list-item-${t.id}-${index}`}
+                        index={index}
+                        id={t.id}
+                        name={t.name}
+                        isCompleted={t.isCompleted}
+                        todoPageStatus={todoPageStatus}
+                        onDragEndHandler={onDragEndHandler}
+                        onDragStartHandler={() => {
+                          onDragStartHandler(index);
+                        }}
+                        onDragEnterHandler={() => {
+                          onDragEnterHandler(index);
+                        }}
+                      />
                     );
                   })}
                 </ul>
@@ -132,6 +107,8 @@ const Todo: React.FC = () => {
                 uncompletedItemsCount={uncompletedItemsCount}
                 todoPageStatus={todoPageStatus}
               />
+
+              <footer>{todosItems.length > 1 && 'Drag and drop to reorder list'}</footer>
             </div>
           </div>
         </div>

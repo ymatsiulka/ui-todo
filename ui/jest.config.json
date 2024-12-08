@@ -1,0 +1,22 @@
+{
+  "testEnvironment": "jsdom",
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "src/**/*.{js,jsx,ts,tsx}",
+    "!src/**/*.d.ts"
+  ],
+  "coveragePathIgnorePatterns": [
+    "/node_modules/",
+    "src/appConstants/.*\\.ts$"
+  ],
+  "transform":{
+    "^.+\\.(js|ts|tsx)$": "babel-jest"
+  },
+  "modulePaths":["<rootDir>/src"],
+  "coverageDirectory": "coverage",
+  "coverageReporters": ["json", "lcov", "text", "clover"],
+  "transformIgnorePatterns":["/node_modules"],
+  "moduleNameMapper": {
+    "^.+\\.(sass|scss)$": "identity-obj-proxy"
+  }
+}

@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox should render properly 1`] = `
+<DocumentFragment>
+  <div
+    class="checkboxWrapper"
+  >
+    <label
+      class="d-flex w-100 f-align-vertical-center gap-10"
+      for="checkbox_1"
+    >
+      <input
+        checked=""
+        class="checkbox__input"
+        id="checkbox_1"
+        name="checkbox"
+        type="checkbox"
+      />
+      <span
+        class="check__box"
+      />
+      <s
+        style="color: rgb(183, 183, 186);"
+      >
+        label
+      </s>
+    </label>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Checkbox should render properly 2`] = `
+<DocumentFragment>
+  <div
+    class="checkboxWrapper"
+  >
+    <label
+      class="d-flex w-100 f-align-vertical-center gap-10"
+      for="checkbox_1"
+    >
+      <input
+        class="checkbox__input"
+        id="checkbox_1"
+        name="checkbox"
+        type="checkbox"
+      />
+      <span
+        class="check__box"
+      />
+      label
+    </label>
+  </div>
+</DocumentFragment>
+`;

@@ -4,16 +4,15 @@ type TypographyVariants = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
 interface TypographyProps {
   variant: TypographyVariants;
-  children?: React.ReactNode;
-  className?: string;
   text?: string;
+  className?: string;
 }
 
-const Typography: React.FC<TypographyProps> = ({ variant, children, className, text, ...props }) => {
+const Typography: React.FC<TypographyProps> = ({ variant, className, text, ...props }) => {
   const TypographyComponent = variant;
   return (
     <TypographyComponent {...props} className={className}>
-      {text ?? children}
+      {text}
     </TypographyComponent>
   );
 };

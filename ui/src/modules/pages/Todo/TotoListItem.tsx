@@ -33,6 +33,9 @@ const TodoListItem: React.FC<TodoListItemProps> = ({
 
   const onChangeTodoHandler = (value: boolean): void => {
     dispatch(checkTodo({ id, isChecked: value }));
+    if (todoPageStatus !== TodoPageStatuses.All) {
+      setIsTodoItemHovering(false);
+    }
   };
 
   const onDeleteTodoHandler = (): void => {
@@ -61,9 +64,6 @@ const TodoListItem: React.FC<TodoListItemProps> = ({
         onDragStart={onDragStartHandler}
         onDragEnter={onDragEnterHandler}
         onDragEnd={onDragEndHandler}
-        onDragOver={(e) => {
-          e.preventDefault();
-        }}
         className={styles.todoCheckboxItem}
         id={id.toString()}
         data-value={id.toString()}

@@ -6,6 +6,8 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.4",
     "@types/react-redux": "^7.1.33",
+    "identity-obj-proxy": "^3.0.0",
+    "jest-environment-jsdom": "^29.7.0",
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.2.0",
@@ -21,19 +23,6 @@
     "build:desktop": "webpack --env mode=production --env platform=desktop",
     "typecheck": "tsc",
     "test": "jest --coverage"
-  },
-  "jest": {
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}",
-      "!src/**/*.d.ts"
-    ],
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "src/appConstants/.*\\.ts$"
-    ],
-    "coverageDirectory": "coverage",
-    "coverageReporters": ["json", "lcov", "text", "clover"]
   },
   "keywords": [],
   "author": "",

@@ -1,13 +1,13 @@
 import React, { useRef, useState } from 'react';
-import { Input } from 'modules/shared';
-import { type TodoResponse } from 'types/api';
+import { Spacer } from 'modules/shared';
 import { TodoPageStatuses } from 'types/frontend';
-import { input, keys } from 'appConstants';
+import { keys } from 'appConstants';
 import TodoListActions from './TodoListActions';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { addTodo, clearTodos, moveTodos, uncompletedSelectItemsCount } from 'store/features/todos/todosSlice';
 import styles from './Todo.m.scss';
-import TodoListItem from './TotoListItem';
+import TodoList from './TodoList';
+import TodoInput from './TodoInput';
 
 const Todo: React.FC = () => {
   const [todoPageStatus, setTodoPageStatus] = useState<TodoPageStatuses>(TodoPageStatuses.All);
@@ -56,65 +56,33 @@ const Todo: React.FC = () => {
 
   const uncompletedItemsCount = uncompletedSelectItemsCount(todosState);
   return (
-    <>
-      <div className={styles.wrapper}>
-        <div className={styles.content}>
-          <div className="todo-wrapper">
-            <div className={styles.todoContent}>
-              <h1 className="todo-text c-white">T O D O</h1>
-              <div className="spacer-1" />
-              <Input
-                value={todoName}
-                id="todo-input"
-                className="todo-input"
-                name={''}
-                label={''}
-                type={input.text}
-                onChange={onChangeHandler}
-                onKeyUp={onKeyUpHandler}
-              >
-                <span className="check__box" style={{ marginLeft: '0px', marginRight: '0px' }} />
-              </Input>
-              <div className="spacer-2" />
-              <div className={styles.todoListContainer}>
-                <ul>
-                  {todosItems.map((t: TodoResponse, index: number) => {
-                    return (
-                      <TodoListItem
-                        key={`todo-list-item-${t.id}-${index}`}
-                        index={index}
-                        id={t.id}
-                        name={t.name}
-                        isCompleted={t.isCompleted}
-                        todoPageStatus={todoPageStatus}
-                        onDragEndHandler={onDragEndHandler}
-                        onDragStartHandler={() => {
-                          onDragStartHandler(index);
-                        }}
-                        onDragEnterHandler={() => {
-                          onDragEnterHandler(index);
-                        }}
-                      />
-                    );
-                  })}
-                </ul>
-              </div>
-              <TodoListActions
-                onClickAllHandler={onClickAllHandler}
-                onClickActiveHandler={onClickActiveHandler}
-                onClickCompletedHandler={onClickCompletedHandler}
-                onClickClearCompletedHandler={onClickClearCompletedHandler}
-                uncompletedItemsCount={uncompletedItemsCount}
-                todoPageStatus={todoPageStatus}
-              />
-
-              <footer>{todosItems.length > 1 && 'Drag and drop to reorder list'}</footer>
-            </div>
-          </div>
+    <div className={styles.wrapper}>
+      <div className={styles.content}>
+        <div className={styles.todoContent}>
+          <h1 className="todo-text c-white">T O D O</h1>
+          <Spacer top={15} bottom={15} />
+          <TodoInput value={todoName} onChangeHandler={onChangeHandler} onKeyUpHandler={onKeyUpHandler} />
+          <Spacer top={10} bottom={10} />
+          <TodoList
+            todoItems={todosItems}
+            todoPageStatus={todoPageStatus}
+            onDragStartHandler={onDragStartHandler}
+            onDragEndHandler={onDragEndHandler}
+            onDragEnterHandler={onDragEnterHandler}
+          />
+          <TodoListActions
+            onClickAllHandler={onClickAllHandler}
+            onClickActiveHandler={onClickActiveHandler}
+            onClickCompletedHandler={onClickCompletedHandler}
+            onClickClearCompletedHandler={onClickClearCompletedHandler}
+            uncompletedItemsCount={uncompletedItemsCount}
+            todoPageStatus={todoPageStatus}
+          />
+          <footer>{todosItems.length > 1 && 'Drag and drop to reorder list'}</footer>
         </div>
-        <div className="background-image" />
       </div>
-    </>
+      <div className="background-image" />
+    </div>
   );
 };
 

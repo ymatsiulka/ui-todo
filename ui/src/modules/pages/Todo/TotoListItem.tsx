@@ -8,7 +8,6 @@ import { useAppDispatch } from 'hooks';
 
 interface TodoListItemProps {
   id: number;
-  index: number;
   name: string;
   isCompleted: boolean;
   todoPageStatus: TodoPageStatuses;
@@ -19,7 +18,6 @@ interface TodoListItemProps {
 
 const TodoListItem: React.FC<TodoListItemProps> = ({
   id,
-  index,
   name,
   isCompleted,
   todoPageStatus,

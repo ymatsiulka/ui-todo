@@ -24,7 +24,6 @@ const TodoList: React.FC<TodoListProps> = ({
       {todoItems.map((t: TodoResponse, index: number) => (
         <TodoListItem
           key={`todo-list-item-${t.id}-${index}`}
-          index={index}
           id={t.id}
           name={t.name}
           isCompleted={t.isCompleted}

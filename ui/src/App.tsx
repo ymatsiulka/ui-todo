@@ -6,11 +6,11 @@ import styles from './App.m.scss';
 
 const App: React.FC = () => {
   return (
-    <div className={styles.app}>
-      <Provider store={store}>
+    <Provider store={store}>
+      <div className={styles.container}>
         <Todo />
-      </Provider>
-    </div>
+      </div>
+    </Provider>
   );
 };
 

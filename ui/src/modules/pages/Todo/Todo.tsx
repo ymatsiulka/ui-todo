@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Spacer } from 'modules/shared';
+import { Spacer, Typography } from 'modules/shared';
 import { TodoPageStatuses } from 'types/frontend';
 import { keys } from 'appConstants';
 import TodoListActions from './TodoListActions';
@@ -59,7 +59,7 @@ const Todo: React.FC = () => {
     <div className={styles.wrapper}>
       <div className={styles.content}>
         <div className={styles.todoContent}>
-          <h1 className="todo-text c-white">T O D O</h1>
+          <Typography variant="h1" className="c-white" text="T O D O" />
           <Spacer top={15} bottom={15} />
           <TodoInput value={todoName} onChangeHandler={onChangeHandler} onKeyUpHandler={onKeyUpHandler} />
           <Spacer top={10} bottom={10} />
@@ -80,8 +80,8 @@ const Todo: React.FC = () => {
           />
           <footer>{todosItems.length > 1 && 'Drag and drop to reorder list'}</footer>
         </div>
+        <div className="background-image" />
       </div>
-      <div className="background-image" />
     </div>
   );
 };

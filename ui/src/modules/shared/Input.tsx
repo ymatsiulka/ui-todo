@@ -13,7 +13,7 @@ const Input: React.FC<InputProps> = ({ name, label, children, ...rest }) => {
       {children}
 
       <input id={name} {...rest} />
-      {(label || name) && <label htmlFor={name}>{label}</label>}
+      <label htmlFor={name}>{label}</label>
     </div>
   );
 };

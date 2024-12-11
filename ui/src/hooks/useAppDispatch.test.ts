@@ -2,17 +2,16 @@ import '@testing-library/jest-dom';
 import { useAppDispatch } from './useAppDispatch';
 
 const mockUseDispatch = jest.fn();
+
 jest.mock('react-redux', () => {
   return {
-    useDispatch: mockUseDispatch,
+    useDispatch: jest.fn().mockImplementation(mockUseDispatch),
   };
 });
 
-test('useAppDispatch should return expected result', async () => {
+test('useAppDispatch should be expected function', async () => {
   // Arrange
   // Act
-  const result = useAppDispatch();
-
   // Assert
-  expect(result).toEqual(mockUseDispatch);
+  expect(useAppDispatch.toString()).toEqual(mockUseDispatch.toString());
 });

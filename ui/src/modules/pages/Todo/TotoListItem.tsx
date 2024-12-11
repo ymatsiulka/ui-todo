@@ -56,9 +56,9 @@ const TodoListItem: React.FC<TodoListItemProps> = ({
   return (
     isVisible && (
       <li
+        draggable
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
-        draggable
         onDragStart={onDragStartHandler}
         onDragEnter={onDragEnterHandler}
         onDragEnd={onDragEndHandler}

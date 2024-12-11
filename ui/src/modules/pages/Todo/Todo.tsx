@@ -4,7 +4,7 @@ import { TodoPageStatuses } from 'types/frontend';
 import { keys } from 'appConstants';
 import TodoListActions from './TodoListActions';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { addTodo, clearTodos, moveTodos, uncompletedSelectItemsCount } from 'store/features/todos/todosSlice';
+import { addTodo, clearCompletedTodos, moveTodos, uncompletedSelectItemsCount } from 'store/features/todos/todosSlice';
 import styles from './Todo.m.scss';
 import TodoList from './TodoList';
 import TodoInput from './TodoInput';
@@ -44,7 +44,7 @@ const Todo: React.FC = () => {
   };
 
   const onClickClearCompletedHandler = (): void => {
-    dispatch(clearTodos());
+    dispatch(clearCompletedTodos());
   };
 
   const onKeyUpHandler = (e: React.KeyboardEvent<HTMLInputElement>): void => {

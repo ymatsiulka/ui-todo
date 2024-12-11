@@ -25,11 +25,8 @@ const todosSlice = createSlice({
       const { id } = action.payload;
       state.items = state.items.filter((el) => el.id !== id);
     },
-    clearTodos(state) {
-      state.items = state.items.map((item) => ({
-        ...item,
-        isCompleted: false,
-      }));
+    clearCompletedTodos(state) {
+      state.items = state.items.filter((t) => !t.isCompleted);
     },
     moveTodos(state, action: PayloadAction<{ firstIndex: number; secondIndex: number }>) {
       const { firstIndex, secondIndex } = action.payload;
@@ -43,5 +40,5 @@ const todosSlice = createSlice({
 export const uncompletedSelectItemsCount = (state: TodoState): number =>
   state.items.filter((t) => !t.isCompleted).length;
 
-export const { addTodo, checkTodo, deleteTodo, clearTodos, moveTodos } = todosSlice.actions;
+export const { addTodo, checkTodo, deleteTodo, clearCompletedTodos, moveTodos } = todosSlice.actions;
 export default todosSlice.reducer;

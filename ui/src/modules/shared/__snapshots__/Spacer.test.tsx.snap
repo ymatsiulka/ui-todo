@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spacer should render properly 1`] = `
+<DocumentFragment>
+  <div
+    bottom="1"
+    class="spacer"
+    left="1"
+    right="2"
+    style="margin: 1px 2px 1px 1px;"
+    top="1"
+  >
+    Some text
+  </div>
+</DocumentFragment>
+`;

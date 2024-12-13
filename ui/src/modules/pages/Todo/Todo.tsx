@@ -58,6 +58,7 @@ const Todo: React.FC = () => {
   return (
     <div className={styles.content}>
       <div className={styles.todoContent}>
+        <Spacer top={10} bottom={10} />
         <Typography variant="h1" className="c-white" text="T O D O" />
         <Spacer top={15} bottom={15} />
         <TodoInput value={todoName} onChangeHandler={onChangeHandler} onKeyUpHandler={onKeyUpHandler} />
@@ -77,9 +78,9 @@ const Todo: React.FC = () => {
           uncompletedItemsCount={uncompletedItemsCount}
           todoPageStatus={todoPageStatus}
         />
+        {todosItems.length > 1 && <Spacer top={10} bottom={10} />}
         <footer>{todosItems.length > 1 && 'Drag and drop to reorder list'}</footer>
       </div>
-      <div className="background-image" />
     </div>
   );
 };

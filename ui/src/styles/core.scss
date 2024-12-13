@@ -31,10 +31,12 @@ input:focus-visible {
   outline: none !important;
 }
 
-body {
+body,
+html,
+#root {
   margin: 0;
+  /* Убираем отступы */
   padding: 0;
-  position: relative;
 }
 
 footer {

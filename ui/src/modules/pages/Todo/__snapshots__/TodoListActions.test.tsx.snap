@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should render properly 1`] = `
+<DocumentFragment>
+  <div
+    class="todoListActions"
+  >
+    <div
+      class="left"
+    >
+      <span
+        class="fs-12"
+      >
+        1 items left 
+      </span>
+    </div>
+    <div
+      class="middle"
+    >
+      <button
+        class="button fs-12 false"
+        type="button"
+      >
+        <span>
+          All
+        </span>
+      </button>
+      <button
+        class="button fs-12 c-blue"
+        type="button"
+      >
+        <span>
+          Active
+        </span>
+      </button>
+      <button
+        class="button fs-12 false"
+        type="button"
+      >
+        <span>
+          Completed
+        </span>
+      </button>
+    </div>
+    <div
+      class="right"
+    >
+      <button
+        class="button fs-12"
+        type="button"
+      >
+        <span>
+          Clear Completed
+        </span>
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`TodoListActions should render properly 1`] = `
+<DocumentFragment>
+  <div
+    class="todoListActions"
+  >
+    <div
+      class="left"
+    >
+      <span
+        class="fs-12"
+      >
+        1 items left 
+      </span>
+    </div>
+    <div
+      class="middle"
+    >
+      <button
+        class="button fs-12 false"
+        type="button"
+      >
+        <span>
+          All
+        </span>
+      </button>
+      <button
+        class="button fs-12 c-blue"
+        type="button"
+      >
+        <span>
+          Active
+        </span>
+      </button>
+      <button
+        class="button fs-12 false"
+        type="button"
+      >
+        <span>
+          Completed
+        </span>
+      </button>
+    </div>
+    <div
+      class="right"
+    >
+      <button
+        class="button fs-12"
+        type="button"
+      >
+        <span>
+          Clear Completed
+        </span>
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;

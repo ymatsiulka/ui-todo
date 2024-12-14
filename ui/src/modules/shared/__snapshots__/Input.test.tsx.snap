@@ -17,3 +17,16 @@ exports[`Input should render properly 1`] = `
   </div>
 </DocumentFragment>
 `;
+
+exports[`Input when nam and label is empty should render properly 1`] = `
+<DocumentFragment>
+  <div
+    class="inputWrapper"
+  >
+    Some text
+    <input
+      id=""
+    />
+  </div>
+</DocumentFragment>
+`;

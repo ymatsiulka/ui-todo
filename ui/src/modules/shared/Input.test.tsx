@@ -14,3 +14,16 @@ test('Input should render properly', async () => {
   // Assert
   expect(asFragment()).toMatchSnapshot();
 });
+
+test('Input when nam and label is empty should render properly', async () => {
+  // Arrange
+  // Act
+  const { asFragment } = render(
+    <Input name="" label="">
+      Some text
+    </Input>,
+  );
+
+  // Assert
+  expect(asFragment()).toMatchSnapshot();
+});

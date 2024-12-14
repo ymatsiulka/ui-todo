@@ -1,6 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button should render properly 1`] = `
+exports[`Button with children should render properly 1`] = `
+<DocumentFragment>
+  <button
+    class="button btn-primary"
+    type="button"
+  >
+    <span>
+      Some text
+    </span>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Button with title should render properly 1`] = `
 <DocumentFragment>
   <button
     class="button btn-primary"

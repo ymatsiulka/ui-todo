@@ -12,6 +12,7 @@ import { type TodoResponse } from 'types/api';
 
 const initialState: TodoState = {
   items: [],
+  nextId: 0,
 };
 
 test('undefined reducer should return initial state', async () => {
@@ -33,6 +34,7 @@ test('addTodo reducer should add todo to initial state', async () => {
   };
   const expectedState: TodoState = {
     items: [item],
+    nextId: 0,
   };
 
   // Act
@@ -53,6 +55,7 @@ test('checkTodo reducer should complete todo', async () => {
         isCompleted: false,
       },
     ],
+    nextId: 0,
   };
   const expectedState: TodoState = {
     items: [
@@ -63,6 +66,7 @@ test('checkTodo reducer should complete todo', async () => {
         isCompleted: true,
       },
     ],
+    nextId: 0,
   };
 
   // Act
@@ -82,9 +86,11 @@ test('deleteTodo reducer should delete todo', async () => {
         isCompleted: false,
       },
     ],
+    nextId: 0,
   };
   const expectedState: TodoState = {
     items: [],
+    nextId: 0,
   };
 
   // Act
@@ -110,6 +116,7 @@ test('clearCompletedTodos reducer should leave only not completed todos', async 
         isCompleted: true,
       },
     ],
+    nextId: 0,
   };
   const expectedState: TodoState = {
     items: [
@@ -120,6 +127,7 @@ test('clearCompletedTodos reducer should leave only not completed todos', async 
         isCompleted: false,
       },
     ],
+    nextId: 0,
   };
 
   // Act
@@ -145,6 +153,7 @@ test('moveTodos reducer should swap todos', async () => {
         isCompleted: true,
       },
     ],
+    nextId: 0,
   };
   const expectedState: TodoState = {
     items: [
@@ -161,6 +170,7 @@ test('moveTodos reducer should swap todos', async () => {
         isCompleted: false,
       },
     ],
+    nextId: 0,
   };
 
   // Act
@@ -186,6 +196,7 @@ test('uncompletedSelectItemsCount should return expected result', async () => {
         isCompleted: true,
       },
     ],
+    nextId: 0,
   };
 
   // Act

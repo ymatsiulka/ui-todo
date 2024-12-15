@@ -15,6 +15,7 @@ const TodoInput: React.FC<TodoInputProps> = ({ value, onChangeHandler, onKeyUpHa
       value={value}
       id="todo-input"
       className="todo-input"
+      placeholder=""
       name={''}
       label={''}
       type={input.text}

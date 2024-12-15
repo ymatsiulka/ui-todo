@@ -17,6 +17,7 @@ test('configureStore should return expected object', async () => {
   // Arrange
   const todoState: TodoState = {
     items: [],
+    nextId: 0,
   };
   const expectedInitState = {
     todos: todoState,

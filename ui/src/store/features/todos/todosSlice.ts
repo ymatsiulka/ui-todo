@@ -4,6 +4,7 @@ import { type TodoState } from 'types/redux/TodoState';
 
 const initialState: TodoState = {
   items: [],
+  nextId: 0,
 };
 
 const todosSlice = createSlice({
@@ -12,7 +13,13 @@ const todosSlice = createSlice({
   reducers: {
     addTodo: (state, action: PayloadAction<{ todoName: string }>) => {
       const todoName = action.payload.todoName;
-      state.items = [todoResponseFactory.create(state.items.length + 1, todoName), ...state.items].map((t) => {
+
+      if (state.nextId === 0) {
+        state.nextId = state.items.length > 0 ? Math.max(...state.items.map((t) => t.id)) : state.nextId;
+      }
+      state.nextId = state.nextId + 1;
+
+      state.items = [todoResponseFactory.create(state.nextId, todoName), ...state.items].map((t) => {
         return { ...t, order: t.order + 1 };
       });
     },

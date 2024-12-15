@@ -20,7 +20,7 @@ const TodoList: React.FC<TodoListProps> = ({
   onDragEndHandler,
 }) => {
   return (
-    <ul className={styles.todoList}>
+    <ul className={styles.todoList} title="ui-todo-list">
       {todoItems.map((t: TodoResponse, index: number) => (
         <TodoListItem
           key={`todo-list-item-${t.id}-${index}`}

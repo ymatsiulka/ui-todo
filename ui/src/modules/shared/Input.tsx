@@ -12,7 +12,7 @@ const Input: React.FC<InputProps> = ({ name, label, children, ...rest }) => {
     <div className={styles.inputWrapper}>
       {children}
 
-      <input id={name} {...rest} />
+      <input title={name} id={name} {...rest} />
       {(label || name) && <label htmlFor={name}>{label}</label>}
     </div>
   );

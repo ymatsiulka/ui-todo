@@ -29,16 +29,19 @@ const TodoListActions: React.FC<TodoListActionsProps> = ({
       </div>
       <div className="middle">
         <Button
+          id="show-all-todo-btn"
           className={activeButtonClassName(todoPageStatus === TodoPageStatuses.All)}
           title="All"
           onClick={onClickAllHandler}
         />
         <Button
+          id="show-active-todo-btn"
           className={activeButtonClassName(todoPageStatus === TodoPageStatuses.Active)}
           title="Active"
           onClick={onClickActiveHandler}
         />
         <Button
+          id="show-completed-todo-btn"
           className={activeButtonClassName(todoPageStatus === TodoPageStatuses.Completed)}
           title="Completed"
           onClick={onClickCompletedHandler}

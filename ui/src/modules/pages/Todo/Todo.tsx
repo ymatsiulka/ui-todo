@@ -79,7 +79,7 @@ const Todo: React.FC = () => {
           todoPageStatus={todoPageStatus}
         />
         {todosItems.length > 1 && <Spacer top={10} bottom={10} />}
-        <footer>{todosItems.length > 1 && 'Drag and drop to reorder list'}</footer>
+        <footer id="dnd-footer">{todosItems.length > 1 && 'Drag and drop to reorder list'}</footer>
       </div>
     </div>
   );

@@ -34,11 +34,48 @@ test('addTodo reducer should add todo to initial state', async () => {
   };
   const expectedState: TodoState = {
     items: [item],
-    nextId: 0,
+    nextId: 1,
   };
 
   // Act
   const result = reducer(initialState, addTodo({ todoName: 'do smth' }));
+
+  // Assert
+  expect(result).toEqual(expectedState);
+});
+
+test('addTodo reducer when have initial item should add todo to initial state', async () => {
+  // Arrange
+  const item1: TodoResponse = {
+    id: 1,
+    order: 2,
+    name: 'do smth1',
+    isCompleted: false,
+  };
+  const item2: TodoResponse = {
+    id: 2,
+    order: 1,
+    name: 'do smth2',
+    isCompleted: false,
+  };
+  const state: TodoState = {
+    items: [
+      {
+        id: 1,
+        order: 1,
+        name: 'do smth1',
+        isCompleted: false,
+      },
+    ],
+    nextId: 1,
+  };
+  const expectedState: TodoState = {
+    items: [item2, item1],
+    nextId: 2,
+  };
+
+  // Act
+  const result = reducer(state, addTodo({ todoName: 'do smth2' }));
 
   // Assert
   expect(result).toEqual(expectedState);

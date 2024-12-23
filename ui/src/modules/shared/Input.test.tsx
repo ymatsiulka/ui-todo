@@ -15,7 +15,7 @@ test('Input should render properly', async () => {
   expect(asFragment()).toMatchSnapshot();
 });
 
-test('Input when nam and label is empty should render properly', async () => {
+test('Input when name and label is empty should render properly', async () => {
   // Arrange
   // Act
   const { asFragment } = render(

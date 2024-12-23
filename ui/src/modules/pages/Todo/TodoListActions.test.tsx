@@ -3,6 +3,12 @@ import { render } from '@testing-library/react';
 import TodoListActions from './TodoListActions';
 import { TodoPageStatuses } from 'types/frontend';
 
+jest.mock('modules/shared', () => {
+  return {
+    Button: jest.fn((props) => <button {...props} />),
+  };
+});
+
 test('TodoListActions should render properly', async () => {
   // Arrange
   // Act

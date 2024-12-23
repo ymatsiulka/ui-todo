@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoListItem should render properly 1`] = `
+<DocumentFragment>
+  <li
+    class="todoCheckboxItem"
+    data-value="1"
+    draggable="true"
+    id="1"
+  >
+    <input
+      checked=""
+      data-testid="checkbox"
+      id="1"
+      label="name"
+      name="1"
+      type="checkbox"
+    />
+    <button
+      class="delete-todo-button"
+      data-testid="button"
+    >
+      <span />
+    </button>
+  </li>
+</DocumentFragment>
+`;

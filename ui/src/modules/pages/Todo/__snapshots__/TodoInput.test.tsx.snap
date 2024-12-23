@@ -1,38 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App should render properly 1`] = `
-<DocumentFragment>
-  <div
-    class="inputWrapper"
-  >
-    <span
-      class="check__box"
-      style="margin-left: 0px; margin-right: 0px;"
-    />
-    <input
-      class="todo-input"
-      id="todo-input"
-      type="text"
-      value=""
-    />
-  </div>
-</DocumentFragment>
-`;
-
 exports[`TodoInput should render properly 1`] = `
 <DocumentFragment>
   <div
-    class="inputWrapper"
+    class="todo-input"
+    id="todo-input"
+    label=""
+    name="todo-input"
+    placeholder=""
+    title="todo-input"
+    type="text"
+    value=""
   >
     <span
       class="check__box"
       style="margin-left: 0px; margin-right: 0px;"
-    />
-    <input
-      class="todo-input"
-      id="todo-input"
-      type="text"
-      value=""
     />
   </div>
 </DocumentFragment>

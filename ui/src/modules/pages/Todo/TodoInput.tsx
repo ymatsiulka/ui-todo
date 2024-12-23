@@ -1,7 +1,6 @@
 import React from 'react';
 import { Input } from 'modules/shared';
 import { input } from 'appConstants';
-// import styles from './TodoInput.m.scss';
 
 interface TodoInputProps {
   value: string;

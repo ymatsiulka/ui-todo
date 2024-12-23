@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { TodoPageStatuses } from 'types/frontend';
 import { Button, Checkbox } from 'modules/shared';
-import styles from './TodoListItem.m.scss';
 import { checkTodo, deleteTodo } from 'store/features/todos/todosSlice';
 import { Icon } from '@iconify/react';
 import { useAppDispatch } from 'hooks';
+import styles from './TodoListItem.m.scss';
 
 interface TodoListItemProps {
   id: number;

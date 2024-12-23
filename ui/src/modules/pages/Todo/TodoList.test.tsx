@@ -1,12 +1,26 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { TodoPageStatuses } from 'types/frontend';
 import TodoList from './TodoList';
 
+jest.mock('./TotoListItem', () => {
+  return jest.fn(
+    ({ isCompleted, todoPageStatus, onDragStartHandler, onDragEnterHandler, onDragEndHandler, ...props }) => (
+      <li onDragStart={onDragStartHandler} onDragEnter={onDragEnterHandler} onDragEnd={onDragEndHandler} {...props}>
+        test item
+      </li>
+    ),
+  );
+});
+
 test('TodoList should render properly', async () => {
   // Arrange
+  const mockOnDragStartHandler = jest.fn();
+  const mockOnDragEnterHandler = jest.fn();
+  const mockOnDragEndHandler = jest.fn();
+
   // Act
-  const { asFragment } = render(
+  const { asFragment, getByText } = render(
     <TodoList
       todoItems={[
         {
@@ -17,12 +31,20 @@ test('TodoList should render properly', async () => {
         },
       ]}
       todoPageStatus={TodoPageStatuses.Completed}
-      onDragStartHandler={jest.fn()}
-      onDragEnterHandler={jest.fn()}
-      onDragEndHandler={jest.fn()}
+      onDragStartHandler={mockOnDragStartHandler}
+      onDragEnterHandler={mockOnDragEnterHandler}
+      onDragEndHandler={mockOnDragEndHandler}
     />,
   );
 
+  const listItem = getByText('test item');
+  fireEvent.dragStart(listItem);
+  fireEvent.dragEnter(listItem);
+  fireEvent.dragEnd(listItem);
+
   // Assert
   expect(asFragment()).toMatchSnapshot();
+  expect(mockOnDragStartHandler).toHaveBeenCalled();
+  expect(mockOnDragEnterHandler).toHaveBeenCalled();
+  expect(mockOnDragEndHandler).toHaveBeenCalled();
 });

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoList should render properly 1`] = `
+<DocumentFragment>
+  <ul
+    class="todoList"
+    title="ui-todo-list"
+  >
+    <li
+      data-testid="li"
+    />
+  </ul>
+</DocumentFragment>
+`;

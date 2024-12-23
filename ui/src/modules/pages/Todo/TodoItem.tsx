@@ -1,26 +1,25 @@
-import React, { useState } from 'react';
-import { TodoPageStatuses } from 'types/frontend';
+import React, { useEffect, useState } from 'react';
 import { Button, Checkbox } from 'modules/shared';
-import styles from './TodoListItem.m.scss';
 import { checkTodo, deleteTodo } from 'store/features/todos/todosSlice';
 import { Icon } from '@iconify/react';
 import { useAppDispatch } from 'hooks';
+import styles from './TodoItem.m.scss';
 
-interface TodoListItemProps {
+interface TodoItemProps {
   id: number;
   name: string;
+  isVisible: boolean;
   isCompleted: boolean;
-  todoPageStatus: TodoPageStatuses;
   onDragStartHandler: React.DragEventHandler<HTMLLIElement>;
   onDragEnterHandler: React.DragEventHandler<HTMLLIElement>;
   onDragEndHandler: React.DragEventHandler<HTMLLIElement>;
 }
 
-const TodoListItem: React.FC<TodoListItemProps> = ({
+const TodoItem: React.FC<TodoItemProps> = ({
   id,
   name,
+  isVisible,
   isCompleted,
-  todoPageStatus,
   onDragStartHandler,
   onDragEnterHandler,
   onDragEndHandler,
@@ -29,21 +28,15 @@ const TodoListItem: React.FC<TodoListItemProps> = ({
 
   const dispatch = useAppDispatch();
 
-  const onChangeTodoHandler = (value: boolean): void => {
-    dispatch(checkTodo({ id, isChecked: value }));
-    if (todoPageStatus !== TodoPageStatuses.All) {
+  useEffect(() => {
+    if (!isVisible) {
       setIsTodoItemHovering(false);
     }
-  };
+  }, [isVisible]);
 
-  const onDeleteTodoHandler = (): void => {
-    dispatch(deleteTodo({ id }));
+  const onChangeTodoHandler = (value: boolean): void => {
+    dispatch(checkTodo({ id, isChecked: value }));
   };
-
-  const isVisible =
-    todoPageStatus === TodoPageStatuses.All ||
-    (isCompleted && todoPageStatus === TodoPageStatuses.Completed) ||
-    (!isCompleted && todoPageStatus === TodoPageStatuses.Active);
 
   const handleMouseOver = (): void => {
     setIsTodoItemHovering(true);
@@ -51,6 +44,10 @@ const TodoListItem: React.FC<TodoListItemProps> = ({
 
   const handleMouseOut = (): void => {
     setIsTodoItemHovering(false);
+  };
+
+  const onDeleteTodoHandler = (): void => {
+    dispatch(deleteTodo({ id }));
   };
 
   return (
@@ -83,4 +80,4 @@ const TodoListItem: React.FC<TodoListItemProps> = ({
   );
 };
 
-export default TodoListItem;
+export default TodoItem;

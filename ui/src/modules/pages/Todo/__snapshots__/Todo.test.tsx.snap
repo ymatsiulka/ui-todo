@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Todo should render properly 1`] = `
+<DocumentFragment>
+  <div
+    class="content"
+  >
+    <div
+      class="todoContent"
+    >
+      <div
+        bottom="10"
+        style="margin-top: 10px; margin-bottom: 10px;"
+        top="10"
+      />
+      <h1
+        class="c-white"
+      >
+        T O D O
+      </h1>
+      <div
+        bottom="15"
+        style="margin-top: 15px; margin-bottom: 15px;"
+        top="15"
+      />
+      <input
+        data-testid="input"
+        type="text"
+      />
+      <div
+        bottom="10"
+        style="margin-top: 10px; margin-bottom: 10px;"
+        top="10"
+      />
+      <ul>
+        <li>
+          some text
+        </li>
+      </ul>
+      <div>
+        <button
+          data-testid="all-button"
+        />
+        <button
+          data-testid="active-button"
+        />
+        <button
+          data-testid="complete-button"
+        />
+        <button
+          data-testid="clear-button"
+        />
+      </div>
+      <div
+        bottom="10"
+        style="margin-top: 10px; margin-bottom: 10px;"
+        top="10"
+      />
+      <footer
+        id="dnd-footer"
+      >
+        Drag and drop to reorder list
+      </footer>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Todo when no items render properly 1`] = `
+<DocumentFragment>
+  <div
+    class="content"
+  >
+    <div
+      class="todoContent"
+    >
+      <div
+        bottom="10"
+        style="margin-top: 10px; margin-bottom: 10px;"
+        top="10"
+      />
+      <h1
+        class="c-white"
+      >
+        T O D O
+      </h1>
+      <div
+        bottom="15"
+        style="margin-top: 15px; margin-bottom: 15px;"
+        top="15"
+      />
+      <input
+        data-testid="input"
+        type="text"
+      />
+      <div
+        bottom="10"
+        style="margin-top: 10px; margin-bottom: 10px;"
+        top="10"
+      />
+      <ul>
+        <li>
+          some text
+        </li>
+      </ul>
+      <div>
+        <button
+          data-testid="all-button"
+        />
+        <button
+          data-testid="active-button"
+        />
+        <button
+          data-testid="complete-button"
+        />
+        <button
+          data-testid="clear-button"
+        />
+      </div>
+      <div
+        bottom="10"
+        style="margin-top: 10px; margin-bottom: 10px;"
+        top="10"
+      />
+      <footer
+        id="dnd-footer"
+      >
+        Drag and drop to reorder list
+      </footer>
+    </div>
+  </div>
+</DocumentFragment>
+`;

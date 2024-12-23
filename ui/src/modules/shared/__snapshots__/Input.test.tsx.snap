@@ -8,6 +8,7 @@ exports[`Input should render properly 1`] = `
     Some text
     <input
       id="input"
+      title="input"
     />
     <label
       for="input"
@@ -18,7 +19,7 @@ exports[`Input should render properly 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Input when nam and label is empty should render properly 1`] = `
+exports[`Input when name and label is empty should render properly 1`] = `
 <DocumentFragment>
   <div
     class="inputWrapper"
@@ -26,6 +27,7 @@ exports[`Input when nam and label is empty should render properly 1`] = `
     Some text
     <input
       id=""
+      title=""
     />
   </div>
 </DocumentFragment>

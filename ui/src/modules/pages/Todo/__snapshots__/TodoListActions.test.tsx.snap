@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoListActions should render properly 1`] = `
+<DocumentFragment>
+  <div
+    class="todoListActions"
+  >
+    <div
+      class="left"
+    >
+      <span
+        class="fs-12"
+      >
+        1 items left 
+      </span>
+    </div>
+    <div
+      class="middle"
+    >
+      <button
+        class="fs-12 false"
+        id="show-all-todo-btn"
+        title="All"
+      />
+      <button
+        class="fs-12 c-blue"
+        id="show-active-todo-btn"
+        title="Active"
+      />
+      <button
+        class="fs-12 false"
+        id="show-completed-todo-btn"
+        title="Completed"
+      />
+    </div>
+    <div
+      class="right"
+    >
+      <button
+        class="fs-12"
+        title="Clear Completed"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

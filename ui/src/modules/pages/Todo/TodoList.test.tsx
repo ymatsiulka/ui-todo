@@ -4,6 +4,7 @@ import { TodoPageStatuses } from 'types/frontend';
 import { useAppDispatch } from 'hooks';
 import TodoList from './TodoList';
 
+const mockDispatch = jest.fn();
 const mockUseAppDispatch = useAppDispatch as jest.Mock;
 
 jest.mock('hooks', () => ({
@@ -21,11 +22,13 @@ jest.mock('./TodoItem', () =>
   )),
 );
 
+beforeEach(() => {
+  mockDispatch.mockClear();
+  mockUseAppDispatch.mockReturnValueOnce(mockDispatch);
+});
+
 test('TodoList should render properly', async () => {
   // Arrange
-  const mockDispatch = jest.fn();
-  mockUseAppDispatch.mockReturnValueOnce(mockDispatch);
-
   // Act
   const { asFragment, getByTestId } = render(
     <TodoList

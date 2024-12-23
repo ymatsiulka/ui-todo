@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { Spacer, Typography } from 'modules/shared';
-import { TodoPageStatuses } from 'types/frontend';
 import { keys } from 'appConstants';
-import TodoListActions from './TodoListActions';
+import { TodoPageStatuses } from 'types/frontend';
+import { Spacer, Typography } from 'modules/shared';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { addTodo, clearCompletedTodos, uncompletedSelectItemsCount } from 'store/features/todos/todosSlice';
-import styles from './Todo.m.scss';
 import TodoList from './TodoList';
 import TodoInput from './TodoInput';
+import TodoListActions from './TodoListActions';
+import styles from './Todo.m.scss';
 
 const Todo: React.FC = () => {
-  const [todoPageStatus, setTodoPageStatus] = useState<TodoPageStatuses>(TodoPageStatuses.All);
   const [todoName, setTodoName] = useState('');
+  const [todoPageStatus, setTodoPageStatus] = useState<TodoPageStatuses>(TodoPageStatuses.All);
 
   const todosState = useAppSelector((state) => state.todos);
   const todosItems = todosState.items;

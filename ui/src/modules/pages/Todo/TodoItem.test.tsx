@@ -3,9 +3,10 @@ import { fireEvent, render } from '@testing-library/react';
 import { useAppDispatch } from 'hooks';
 import TodoItem from './TodoItem';
 
+const mockDispatch = jest.fn();
+const mockSetState = jest.fn();
 const mockUseState = useState as jest.Mock;
 const mockUseAppDispatch = useAppDispatch as jest.Mock;
-const mockSetState = jest.fn();
 
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
@@ -31,7 +32,9 @@ jest.mock('modules/shared', () => ({
 
 beforeEach(() => {
   mockSetState.mockClear();
+  mockDispatch.mockClear();
   mockUseState.mockImplementationOnce(() => [true, mockSetState]);
+  mockUseAppDispatch.mockReturnValueOnce(mockDispatch);
 });
 
 test('TodoItem should render properly', async () => {
@@ -92,9 +95,6 @@ test('TodoItem when hover should update hovering state', async () => {
 
 test('TodoItem when delete button clicked should delete todo', async () => {
   // Arrange
-  const mockDispatch = jest.fn();
-  mockUseAppDispatch.mockReturnValueOnce(mockDispatch);
-
   // Act
   const { getByTestId } = render(
     <TodoItem
@@ -117,9 +117,6 @@ test('TodoItem when delete button clicked should delete todo', async () => {
 
 test('TodoItem when checkbox clicked should dispatch todo state', async () => {
   // Arrange
-  const mockDispatch = jest.fn();
-  mockUseAppDispatch.mockReturnValueOnce(mockDispatch);
-
   // Act
   const { getByTestId } = render(
     <TodoItem

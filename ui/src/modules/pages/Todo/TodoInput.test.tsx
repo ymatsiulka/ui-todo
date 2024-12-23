@@ -2,11 +2,9 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import TodoInput from './TodoInput';
 
-jest.mock('modules/shared', () => {
-  return {
-    Input: jest.fn((props) => <div {...props} />),
-  };
-});
+jest.mock('modules/shared', () => ({
+  Input: jest.fn((props) => <div {...props} />),
+}));
 
 test('TodoInput should render properly', async () => {
   // Arrange

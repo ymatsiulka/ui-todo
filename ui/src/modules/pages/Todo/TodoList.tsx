@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import styles from './TodoList.m.scss';
-import TodoItem from './TotoItem';
+import TodoItem from './TodoItem';
 import { type TodoResponse } from 'types/api';
 import { type TodoPageStatuses } from 'types/frontend';
 import { isVisible } from 'providers/todoItemVisibilityProvider';
@@ -34,7 +34,6 @@ const TodoList: React.FC<TodoListProps> = ({ todoItems, todoPageStatus }) => {
           name={t.name}
           isVisible={isVisible(t.isCompleted, todoPageStatus)}
           isCompleted={t.isCompleted}
-          todoPageStatus={todoPageStatus}
           onDragEndHandler={onDragEndHandler}
           onDragStartHandler={() => {
             onDragStartHandler(index);

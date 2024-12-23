@@ -9,11 +9,7 @@ exports[`TodoItem should render properly 1`] = `
     id="1"
   >
     <input
-      checked=""
       data-testid="checkbox"
-      id="1"
-      label="name"
-      name="1"
       type="checkbox"
     />
     <button

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import { TodoPageStatuses } from 'types/frontend';
-import TodoItem from './TotoItem';
 import { useAppDispatch } from 'hooks';
+import TodoItem from './TodoItem';
 
 const mockUseState = useState as jest.Mock;
 const mockUseAppDispatch = useAppDispatch as jest.Mock;
@@ -11,6 +10,7 @@ const mockSetState = jest.fn();
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
   useState: jest.fn(),
+  useEffect: jest.fn((x) => x()),
 }));
 
 jest.mock('hooks', () => ({
@@ -24,8 +24,8 @@ jest.mock('store/features/todos/todosSlice', () => ({
 
 jest.mock('modules/shared', () => ({
   Button: jest.fn((props) => <button data-testid="button" {...props} />),
-  Checkbox: jest.fn(({ isChecked, onCheckedHandler, ...props }) => (
-    <input data-testid="checkbox" type="checkbox" checked={isChecked} onChange={onCheckedHandler} {...props} />
+  Checkbox: jest.fn(({ onCheckedHandler }) => (
+    <input data-testid="checkbox" type="checkbox" onChange={onCheckedHandler} />
   )),
 }));
 
@@ -46,7 +46,6 @@ test('TodoItem should render properly', async () => {
       id={1}
       name="name"
       isCompleted={true}
-      todoPageStatus={TodoPageStatuses.Completed}
       onDragStartHandler={mockOnDragStartHandler}
       onDragEnterHandler={mockOnDragEnterHandler}
       onDragEndHandler={mockOnDragEndHandler}
@@ -74,7 +73,6 @@ test('TodoItem when hover should update hovering state', async () => {
       id={1}
       name="name"
       isCompleted={true}
-      todoPageStatus={TodoPageStatuses.Completed}
       onDragStartHandler={jest.fn()}
       onDragEnterHandler={jest.fn()}
       onDragEndHandler={jest.fn()}
@@ -103,7 +101,6 @@ test('TodoItem when delete button clicked should delete todo', async () => {
       id={1}
       name="name"
       isCompleted={true}
-      todoPageStatus={TodoPageStatuses.Completed}
       onDragStartHandler={jest.fn()}
       onDragEnterHandler={jest.fn()}
       onDragEndHandler={jest.fn()}
@@ -118,7 +115,7 @@ test('TodoItem when delete button clicked should delete todo', async () => {
   expect(mockDispatch).toHaveBeenCalledTimes(1);
 });
 
-test('TodoItem when checkbox clicked should change todo state', async () => {
+test('TodoItem when checkbox clicked should dispatch todo state', async () => {
   // Arrange
   const mockDispatch = jest.fn();
   mockUseAppDispatch.mockReturnValueOnce(mockDispatch);
@@ -129,7 +126,6 @@ test('TodoItem when checkbox clicked should change todo state', async () => {
       id={1}
       name="name"
       isCompleted={true}
-      todoPageStatus={TodoPageStatuses.Completed}
       onDragStartHandler={jest.fn()}
       onDragEnterHandler={jest.fn()}
       onDragEndHandler={jest.fn()}
@@ -142,5 +138,24 @@ test('TodoItem when checkbox clicked should change todo state', async () => {
 
   // Assert
   expect(mockDispatch).toHaveBeenCalledTimes(1);
+});
+
+test('TodoItem when not visible should change state to not hovering', async () => {
+  // Arrange
+  // Act
+  render(
+    <TodoItem
+      id={1}
+      name="name"
+      isCompleted={true}
+      onDragStartHandler={jest.fn()}
+      onDragEnterHandler={jest.fn()}
+      onDragEndHandler={jest.fn()}
+      isVisible={false}
+    />,
+  );
+
+  // Assert
   expect(mockSetState).toHaveBeenCalledTimes(1);
+  expect(mockSetState).toHaveBeenCalledWith(false);
 });

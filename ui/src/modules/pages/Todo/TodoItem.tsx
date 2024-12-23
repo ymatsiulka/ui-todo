@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { TodoPageStatuses } from 'types/frontend';
+import React, { useEffect, useState } from 'react';
 import { Button, Checkbox } from 'modules/shared';
 import { checkTodo, deleteTodo } from 'store/features/todos/todosSlice';
 import { Icon } from '@iconify/react';
@@ -11,7 +10,6 @@ interface TodoItemProps {
   name: string;
   isVisible: boolean;
   isCompleted: boolean;
-  todoPageStatus: TodoPageStatuses;
   onDragStartHandler: React.DragEventHandler<HTMLLIElement>;
   onDragEnterHandler: React.DragEventHandler<HTMLLIElement>;
   onDragEndHandler: React.DragEventHandler<HTMLLIElement>;
@@ -22,7 +20,6 @@ const TodoItem: React.FC<TodoItemProps> = ({
   name,
   isVisible,
   isCompleted,
-  todoPageStatus,
   onDragStartHandler,
   onDragEnterHandler,
   onDragEndHandler,
@@ -31,11 +28,14 @@ const TodoItem: React.FC<TodoItemProps> = ({
 
   const dispatch = useAppDispatch();
 
-  const onChangeTodoHandler = (value: boolean): void => {
-    dispatch(checkTodo({ id, isChecked: value }));
-    if (todoPageStatus !== TodoPageStatuses.All) {
+  useEffect(() => {
+    if (!isVisible) {
       setIsTodoItemHovering(false);
     }
+  }, [isVisible]);
+
+  const onChangeTodoHandler = (value: boolean): void => {
+    dispatch(checkTodo({ id, isChecked: value }));
   };
 
   const handleMouseOver = (): void => {

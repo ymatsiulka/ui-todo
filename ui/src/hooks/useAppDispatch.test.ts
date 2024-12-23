@@ -3,11 +3,9 @@ import { useAppDispatch } from './useAppDispatch';
 
 const mockUseDispatch = jest.fn();
 
-jest.mock('react-redux', () => {
-  return {
-    useDispatch: jest.fn().mockImplementation(mockUseDispatch),
-  };
-});
+jest.mock('react-redux', () => ({
+  useDispatch: jest.fn().mockImplementation(mockUseDispatch),
+}));
 
 test('useAppDispatch should be expected function', async () => {
   // Arrange

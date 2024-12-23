@@ -7,11 +7,8 @@ exports[`TodoList should render properly 1`] = `
     title="ui-todo-list"
   >
     <li
-      id="1"
-      name="do smth"
-    >
-      test item
-    </li>
+      data-testid="li"
+    />
   </ul>
 </DocumentFragment>
 `;

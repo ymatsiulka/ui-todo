@@ -6,12 +6,10 @@ import { loadFromLocalStorage, saveToLocalStorage } from 'storage';
 const mockSaveToLocalStorage = saveToLocalStorage as jest.Mock;
 const mockLoadFromLocalStorage = loadFromLocalStorage as jest.Mock;
 
-jest.mock('storage', () => {
-  return {
-    saveToLocalStorage: jest.fn(),
-    loadFromLocalStorage: jest.fn(),
-  };
-});
+jest.mock('storage', () => ({
+  saveToLocalStorage: jest.fn(),
+  loadFromLocalStorage: jest.fn(),
+}));
 
 test('configureStore should return expected object', async () => {
   // Arrange

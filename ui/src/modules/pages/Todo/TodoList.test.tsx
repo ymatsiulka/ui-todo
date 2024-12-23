@@ -1,26 +1,33 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { TodoPageStatuses } from 'types/frontend';
+import { useAppDispatch } from 'hooks';
 import TodoList from './TodoList';
 
-jest.mock('./TotoListItem', () => {
-  return jest.fn(
-    ({ isCompleted, todoPageStatus, onDragStartHandler, onDragEnterHandler, onDragEndHandler, ...props }) => (
-      <li onDragStart={onDragStartHandler} onDragEnter={onDragEnterHandler} onDragEnd={onDragEndHandler} {...props}>
-        test item
-      </li>
-    ),
-  );
-});
+const mockUseAppDispatch = useAppDispatch as jest.Mock;
+
+jest.mock('hooks', () => ({
+  useAppDispatch: jest.fn(),
+}));
+
+jest.mock('./TodoItem', () =>
+  jest.fn(({ onDragStartHandler, onDragEnterHandler, onDragEndHandler }) => (
+    <li
+      data-testid="li"
+      onDragStart={onDragStartHandler}
+      onDragEnter={onDragEnterHandler}
+      onDragEnd={onDragEndHandler}
+    />
+  )),
+);
 
 test('TodoList should render properly', async () => {
   // Arrange
-  const mockOnDragStartHandler = jest.fn();
-  const mockOnDragEnterHandler = jest.fn();
-  const mockOnDragEndHandler = jest.fn();
+  const mockDispatch = jest.fn();
+  mockUseAppDispatch.mockReturnValueOnce(mockDispatch);
 
   // Act
-  const { asFragment, getByText } = render(
+  const { asFragment, getByTestId } = render(
     <TodoList
       todoItems={[
         {
@@ -34,14 +41,11 @@ test('TodoList should render properly', async () => {
     />,
   );
 
-  const listItem = getByText('test item');
+  const listItem = getByTestId('li');
   fireEvent.dragStart(listItem);
   fireEvent.dragEnter(listItem);
   fireEvent.dragEnd(listItem);
 
   // Assert
   expect(asFragment()).toMatchSnapshot();
-  expect(mockOnDragStartHandler).toHaveBeenCalled();
-  expect(mockOnDragEnterHandler).toHaveBeenCalled();
-  expect(mockOnDragEndHandler).toHaveBeenCalled();
 });

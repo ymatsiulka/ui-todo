@@ -4,11 +4,12 @@ import { Button, Checkbox } from 'modules/shared';
 import { checkTodo, deleteTodo } from 'store/features/todos/todosSlice';
 import { Icon } from '@iconify/react';
 import { useAppDispatch } from 'hooks';
-import styles from './TodoListItem.m.scss';
+import styles from './TodoItem.m.scss';
 
-interface TodoListItemProps {
+interface TodoItemProps {
   id: number;
   name: string;
+  isVisible: boolean;
   isCompleted: boolean;
   todoPageStatus: TodoPageStatuses;
   onDragStartHandler: React.DragEventHandler<HTMLLIElement>;
@@ -16,9 +17,10 @@ interface TodoListItemProps {
   onDragEndHandler: React.DragEventHandler<HTMLLIElement>;
 }
 
-const TodoListItem: React.FC<TodoListItemProps> = ({
+const TodoItem: React.FC<TodoItemProps> = ({
   id,
   name,
+  isVisible,
   isCompleted,
   todoPageStatus,
   onDragStartHandler,
@@ -36,21 +38,16 @@ const TodoListItem: React.FC<TodoListItemProps> = ({
     }
   };
 
-  const onDeleteTodoHandler = (): void => {
-    dispatch(deleteTodo({ id }));
-  };
-
-  const isVisible =
-    todoPageStatus === TodoPageStatuses.All ||
-    (isCompleted && todoPageStatus === TodoPageStatuses.Completed) ||
-    (!isCompleted && todoPageStatus === TodoPageStatuses.Active);
-
   const handleMouseOver = (): void => {
     setIsTodoItemHovering(true);
   };
 
   const handleMouseOut = (): void => {
     setIsTodoItemHovering(false);
+  };
+
+  const onDeleteTodoHandler = (): void => {
+    dispatch(deleteTodo({ id }));
   };
 
   return (
@@ -83,4 +80,4 @@ const TodoListItem: React.FC<TodoListItemProps> = ({
   );
 };
 
-export default TodoListItem;
+export default TodoItem;

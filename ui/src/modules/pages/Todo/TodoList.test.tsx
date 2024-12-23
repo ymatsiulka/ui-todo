@@ -31,9 +31,6 @@ test('TodoList should render properly', async () => {
         },
       ]}
       todoPageStatus={TodoPageStatuses.Completed}
-      onDragStartHandler={mockOnDragStartHandler}
-      onDragEnterHandler={mockOnDragEnterHandler}
-      onDragEndHandler={mockOnDragEndHandler}
     />,
   );
 

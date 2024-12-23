@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Spacer, Typography } from 'modules/shared';
 import { TodoPageStatuses } from 'types/frontend';
 import { keys } from 'appConstants';
 import TodoListActions from './TodoListActions';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { addTodo, clearCompletedTodos, moveTodos, uncompletedSelectItemsCount } from 'store/features/todos/todosSlice';
+import { addTodo, clearCompletedTodos, uncompletedSelectItemsCount } from 'store/features/todos/todosSlice';
 import styles from './Todo.m.scss';
 import TodoList from './TodoList';
 import TodoInput from './TodoInput';
@@ -12,17 +12,7 @@ import TodoInput from './TodoInput';
 const Todo: React.FC = () => {
   const [todoPageStatus, setTodoPageStatus] = useState<TodoPageStatuses>(TodoPageStatuses.All);
   const [todoName, setTodoName] = useState('');
-  const dragTodo = useRef<number>(0);
-  const draggedOverTodo = useRef<number>(0);
-  const onDragEndHandler = (): void => {
-    dispatch(moveTodos({ firstIndex: dragTodo.current, secondIndex: draggedOverTodo.current }));
-  };
-  const onDragStartHandler = (index: number): void => {
-    dragTodo.current = index;
-  };
-  const onDragEnterHandler = (index: number): void => {
-    draggedOverTodo.current = index;
-  };
+
   const todosState = useAppSelector((state) => state.todos);
   const todosItems = todosState.items;
   const dispatch = useAppDispatch();
@@ -63,13 +53,7 @@ const Todo: React.FC = () => {
         <Spacer top={15} bottom={15} />
         <TodoInput value={todoName} onChangeHandler={onChangeHandler} onKeyUpHandler={onKeyUpHandler} />
         <Spacer top={10} bottom={10} />
-        <TodoList
-          todoItems={todosItems}
-          todoPageStatus={todoPageStatus}
-          onDragStartHandler={onDragStartHandler}
-          onDragEndHandler={onDragEndHandler}
-          onDragEnterHandler={onDragEnterHandler}
-        />
+        <TodoList todoItems={todosItems} todoPageStatus={todoPageStatus} />
         <TodoListActions
           onClickAllHandler={onClickAllHandler}
           onClickActiveHandler={onClickActiveHandler}

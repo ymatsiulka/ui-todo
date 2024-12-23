@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TodoListItem should render properly 1`] = `
+exports[`TodoItem should render properly 1`] = `
 <DocumentFragment>
   <li
     class="todoCheckboxItem"

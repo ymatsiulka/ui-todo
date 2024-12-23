@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { TodoPageStatuses } from 'types/frontend';
-import TodoListItem from './TotoListItem';
+import TodoItem from './TotoItem';
 import { useAppDispatch } from 'hooks';
 
 const mockUseState = useState as jest.Mock;
@@ -34,7 +34,7 @@ beforeEach(() => {
   mockUseState.mockImplementationOnce(() => [true, mockSetState]);
 });
 
-test('TodoListItem should render properly', async () => {
+test('TodoItem should render properly', async () => {
   // Arrange
   const mockOnDragStartHandler = jest.fn();
   const mockOnDragEnterHandler = jest.fn();
@@ -42,7 +42,7 @@ test('TodoListItem should render properly', async () => {
 
   // Act
   const { asFragment, container } = render(
-    <TodoListItem
+    <TodoItem
       id={1}
       name="name"
       isCompleted={true}
@@ -50,6 +50,7 @@ test('TodoListItem should render properly', async () => {
       onDragStartHandler={mockOnDragStartHandler}
       onDragEnterHandler={mockOnDragEnterHandler}
       onDragEndHandler={mockOnDragEndHandler}
+      isVisible={true}
     />,
   );
 
@@ -65,11 +66,11 @@ test('TodoListItem should render properly', async () => {
   expect(mockOnDragEndHandler).toHaveBeenCalled();
 });
 
-test('TodoListItem when hover should update hovering state', async () => {
+test('TodoItem when hover should update hovering state', async () => {
   // Arrange
   // Act
   const { container } = render(
-    <TodoListItem
+    <TodoItem
       id={1}
       name="name"
       isCompleted={true}
@@ -77,6 +78,7 @@ test('TodoListItem when hover should update hovering state', async () => {
       onDragStartHandler={jest.fn()}
       onDragEnterHandler={jest.fn()}
       onDragEndHandler={jest.fn()}
+      isVisible={true}
     />,
   );
 
@@ -90,14 +92,14 @@ test('TodoListItem when hover should update hovering state', async () => {
   expect(mockSetState).toHaveBeenCalledWith(false);
 });
 
-test('TodoListItem when delete button clicked should delete todo', async () => {
+test('TodoItem when delete button clicked should delete todo', async () => {
   // Arrange
   const mockDispatch = jest.fn();
   mockUseAppDispatch.mockReturnValueOnce(mockDispatch);
 
   // Act
   const { getByTestId } = render(
-    <TodoListItem
+    <TodoItem
       id={1}
       name="name"
       isCompleted={true}
@@ -105,6 +107,7 @@ test('TodoListItem when delete button clicked should delete todo', async () => {
       onDragStartHandler={jest.fn()}
       onDragEnterHandler={jest.fn()}
       onDragEndHandler={jest.fn()}
+      isVisible={true}
     />,
   );
 
@@ -115,14 +118,14 @@ test('TodoListItem when delete button clicked should delete todo', async () => {
   expect(mockDispatch).toHaveBeenCalledTimes(1);
 });
 
-test('TodoListItem when checkbox clicked should change todo state', async () => {
+test('TodoItem when checkbox clicked should change todo state', async () => {
   // Arrange
   const mockDispatch = jest.fn();
   mockUseAppDispatch.mockReturnValueOnce(mockDispatch);
 
   // Act
   const { getByTestId } = render(
-    <TodoListItem
+    <TodoItem
       id={1}
       name="name"
       isCompleted={true}
@@ -130,6 +133,7 @@ test('TodoListItem when checkbox clicked should change todo state', async () => 
       onDragStartHandler={jest.fn()}
       onDragEnterHandler={jest.fn()}
       onDragEndHandler={jest.fn()}
+      isVisible={true}
     />,
   );
 

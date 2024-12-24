@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import TodoListActions from './TodoListActions';
 import { TodoPageStatuses } from 'types/frontend';
 
-jest.mock('modules/shared', () => ({
+jest.mock('modules/shared/atoms', () => ({
   Button: jest.fn((props) => <button {...props} />),
 }));
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from 'modules/shared';
+import { Input } from 'modules/shared/atoms';
 import { input } from 'appConstants';
 
 interface TodoInputProps {

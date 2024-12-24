@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import TodoInput from './TodoInput';
 
-jest.mock('modules/shared', () => ({
+jest.mock('modules/shared/atoms', () => ({
   Input: jest.fn((props) => <div {...props} />),
 }));
 

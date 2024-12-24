@@ -42,7 +42,7 @@ jest.mock('hooks', () => ({
   useAppSelector: jest.fn(),
 }));
 
-jest.mock('./TodoList', () =>
+jest.mock('modules/shared/organisms/TodoList', () =>
   jest.fn(() => (
     <ul>
       <li>some text</li>
@@ -50,13 +50,13 @@ jest.mock('./TodoList', () =>
   )),
 );
 
-jest.mock('./TodoInput', () =>
+jest.mock('modules/shared/moleculas/TodoInput', () =>
   jest.fn(({ onChangeHandler, onKeyUpHandler }) => (
     <input data-testid="input" type="text" onChange={onChangeHandler} onKeyUp={onKeyUpHandler} />
   )),
 );
 
-jest.mock('./TodoListActions', () =>
+jest.mock('modules/shared/organisms/TodoListActions', () =>
   jest.fn(({ onClickAllHandler, onClickActiveHandler, onClickCompletedHandler, onClickClearCompletedHandler }) => (
     <div>
       <button data-testid="all-button" onClick={onClickAllHandler} />

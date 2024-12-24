@@ -11,7 +11,7 @@ jest.mock('hooks', () => ({
   useAppDispatch: jest.fn(),
 }));
 
-jest.mock('./TodoItem', () =>
+jest.mock('modules/shared/moleculas/TodoItem', () =>
   jest.fn(({ onDragStartHandler, onDragEnterHandler, onDragEndHandler }) => (
     <li
       data-testid="li"

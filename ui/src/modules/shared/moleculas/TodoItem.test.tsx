@@ -23,7 +23,7 @@ jest.mock('store/features/todos/todosSlice', () => ({
   deleteTodo: jest.fn(),
 }));
 
-jest.mock('modules/shared', () => ({
+jest.mock('modules/shared/atoms', () => ({
   Button: jest.fn((props) => <button data-testid="button" {...props} />),
   Checkbox: jest.fn(({ onCheckedHandler }) => (
     <input data-testid="checkbox" type="checkbox" onChange={onCheckedHandler} />

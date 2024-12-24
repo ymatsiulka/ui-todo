@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import App from 'App';
 
-jest.mock('modules/pages', () => ({
+jest.mock('modules/pages/Todo', () => ({
   Todo: jest.fn(() => <div />),
 }));
 

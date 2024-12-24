@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { keys } from 'appConstants';
 import { TodoPageStatuses } from 'types/frontend';
-import { Spacer, Typography } from 'modules/shared';
+import { Spacer, Typography } from 'modules/shared/atoms';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { addTodo, clearCompletedTodos, uncompletedSelectItemsCount } from 'store/features/todos/todosSlice';
-import TodoList from './TodoList';
-import TodoInput from './TodoInput';
-import TodoListActions from './TodoListActions';
+import TodoInput from '../../shared/moleculas/TodoInput';
 import styles from './Todo.m.scss';
+import TodoList from 'modules/shared/organisms/TodoList';
+import TodoListActions from 'modules/shared/organisms/TodoListActions';
 
 const Todo: React.FC = () => {
   const [todoName, setTodoName] = useState('');

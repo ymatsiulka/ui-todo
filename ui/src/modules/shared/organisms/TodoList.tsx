@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import styles from './TodoList.m.scss';
-import TodoItem from './TodoItem';
+import TodoItem from 'modules/shared/moleculas/TodoItem';
 import { type TodoResponse } from 'types/api';
 import { type TodoPageStatuses } from 'types/frontend';
 import { isVisible } from 'providers/todoItemVisibilityProvider';

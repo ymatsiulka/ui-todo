@@ -1,6 +1,6 @@
 import React from 'react';
 import { TodoPageStatuses } from 'types/frontend';
-import { Button } from 'modules/shared';
+import { Button } from 'modules/shared/atoms';
 import styles from './TodoListActions.m.scss';
 
 interface TodoListActionsProps {

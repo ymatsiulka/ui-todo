@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Checkbox } from 'modules/shared';
+import { Button, Checkbox } from 'modules/shared/atoms';
 import { checkTodo, deleteTodo } from 'store/features/todos/todosSlice';
 import { Icon } from '@iconify/react';
 import { useAppDispatch } from 'hooks';
